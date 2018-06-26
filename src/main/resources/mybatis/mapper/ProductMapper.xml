@@ -1,0 +1,878 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zj.boot_web.mapper.ProductMapper">
+
+	<!-- ************************后台产品管理模块start************************** -->
+
+	<!--  查询系统产品 -->
+	<select id="selectAdminProductList" parameterType="com.zj.boot_web.common.base.PageData" resultType="com.zj.boot_web.common.base.PageData">
+		SELECT
+			xxp.ID,
+			xxp.PID,
+			xxp.P_NUMBER,
+			xxp.IC_NAME,
+			xxp.P_NAME,
+			xxp.SHOW_OP,
+			xxp.SHOW_CP,
+			xxp.KEYWORD,
+			xxp.WE_STATE,
+			xxp.RANK
+		FROM
+			xx_product AS xxp
+		<if test="keyword != null and keyword != ''">
+			WHERE 
+				(LOCATE(#{keyword},xxp.P_NAME) > 0 
+				OR LOCATE(#{keyword},xxp.IC_NAME) > 0 
+				OR LOCATE(#{keyword},xxp.KEYWORD) > 0 )
+		</if>
+		ORDER BY xxp.RANK ASC
+		<if test=" (page != null and page != '') or (size != null and size != '') ">
+			LIMIT #{page},#{size}
+		</if>
+	</select>
+	<!-- 产品总数 -->
+	<select id="selectAdminProductCount" parameterType="com.zj.boot_web.common.base.PageData" resultType="com.zj.boot_web.common.base.PageData">
+		SELECT
+			COUNT(xxp.ID) AS count
+		FROM
+			xx_product AS xxp
+		<if test="keyword != null and keyword != ''">
+			WHERE 
+				(LOCATE(#{keyword},xxp.P_NAME) > 0 
+				OR LOCATE(#{keyword},xxp.IC_NAME) > 0 
+				OR LOCATE(#{keyword},xxp.KEYWORD) > 0 )
+		</if>
+	</select>
+	
+	<!--  查询系统产品 -->
+	<select id="selectAdminProductById" parameterType="com.zj.boot_web.common.base.PageData" resultType="com.zj.boot_web.common.base.PageData">
+		SELECT
+			xxp.ID,
+			xxp.PID,
+			xxp.P_NUMBER,
+			xxp.P_NAME,
+			xxp.TYPE_CODE,
+			xxp.P_CODE,
+			xxp.P_TYPE,
+			xxp.RISK_CODE,
+			xxp.IC_ID,
+			xxp.IC_NAME,
+			xxp.SHOW_OP,
+			xxp.SHOW_CP,
+			xxp.IS_PORT,
+			xxp.PAYMENT,
+			xxp.CASHIER_DESK,
+			xxp.CLEARING_FORM,
+			xxp.IS_INVOICE,
+			xxp.P_LABEL,
+			xxp.KEYWORD,
+			xxp.P_FEATURE,
+			xxp.INFO_URL,
+			xxp.WX_IMG,
+			xxp.P_WAREHOUSE_ID,
+			xxp.WE_STATE,
+			xxp.RANK,
+			xpw.P_INTRO,
+			xpw.P_DESCRIBE,
+			xpw.SHARE_DESCRIBE,
+			xpw.WX_LIST_IMG,
+			xpw.WX_BANNER_IMG,
+			xpw.SHARE_IMG,
+			xpw.FILE_URLS,
+			xpw.HEALTH_TOLD,
+			xpw.HEALTH_TOLD_TEXT,
+			xpw.HEALTH_TOLD_URL,
+			xpw.SAFEGUARD_ILLNESS,
+			xpw.EI_BEGIN_DAYS,
+			xpw.EI_BEGIN_SCOPE,
+			xpw.FORM_OF_POLICY,
+			xpw.SALES_AREA,
+			xpw.EI_SUCCEED_SMS,
+			xpw.EI_SUCCEED_SMS_CODE,
+			xpw.ISSUE_SUCCEED_SMS,
+			xpw.ISSUE_SUCCEED_SMS_CODE,
+			xpw.POLICY_INPUT_URL,
+			xpw.P_INFO_TOP_URL,
+			xpw.P_INFO_URL,
+			xpw.P_UNSCRAMBLE,
+			xpw.UNSCRAMBLE_EXPLAIN,
+			xpw.CLAIMS_PROCESS,
+			xpw.P_COLOR,
+			xpw.REPETITION_INSURE,
+			xpw.ONLINE_CLAIM,
+			xpw.USE_INTEGRAL
+		FROM
+			xx_product AS xxp
+		INNER JOIN xx_product_warehouse AS xpw ON xxp.ID = xpw.P_ID
+		WHERE
+			xxp.ID = #{id}
+	</select>
+	
+	<!-- 添加产品 -->
+	<insert id="insertAdminProduct" parameterType="com.zj.boot_web.common.base.PageData">
+		INSERT IGNORE INTO `xx_product` (
+		<if test="ID != null and ID != ''">
+			`ID`,
+		</if>
+		<if test="PID != null and PID != ''">
+			`PID`,
+		</if>
+		<if test="P_NUMBER != null and P_NUMBER != ''">
+			`P_NUMBER`,
+		</if>
+		<if test="P_NAME != null and P_NAME != ''">
+			`P_NAME`,
+		</if>
+		<if test="TYPE_CODE != null and TYPE_CODE != ''">
+			`TYPE_CODE`,
+		</if>
+		<if test="P_CODE != null and P_CODE != ''">
+			`P_CODE`,
+		</if>
+		<if test="P_TYPE != null and P_TYPE != ''">
+			`P_TYPE`,
+		</if>
+		<if test="RISK_CODE != null and RISK_CODE != ''">
+			`RISK_CODE`,
+		</if>
+		<if test="IC_ID != null and IC_ID != ''">
+			`IC_ID`,
+		</if>
+		<if test="IC_NAME != null and IC_NAME != ''">
+			`IC_NAME`,
+		</if>
+		<if test="SHOW_OP != null and SHOW_OP != ''">
+			`SHOW_OP`,
+		</if>
+		<if test="SHOW_CP != null and SHOW_CP != ''">
+			`SHOW_CP`,
+		</if>
+		<if test="IS_PORT != null and IS_PORT != ''">
+			`IS_PORT`,
+		</if>
+		<if test="PAYMENT != null and PAYMENT != ''">
+			`PAYMENT`,
+		</if>
+		<if test="CASHIER_DESK != null and CASHIER_DESK != ''">
+			`CASHIER_DESK`,
+		</if>
+		<if test="CLEARING_FORM != null and CLEARING_FORM != ''">
+			`CLEARING_FORM`,
+		</if>
+		<if test="IS_INVOICE != null and IS_INVOICE != ''">
+			`IS_INVOICE`,
+		</if>
+		<if test="P_LABEL != null and P_LABEL != ''">
+			`P_LABEL`,
+		</if>
+		<if test="KEYWORD != null and KEYWORD != ''">
+			`KEYWORD`,
+		</if>
+		<if test="P_FEATURE != null and P_FEATURE != ''">
+			`P_FEATURE`,
+		</if>
+		<if test="INFO_URL != null and INFO_URL != ''">
+			`INFO_URL`,
+		</if>
+		<if test="WX_IMG != null and WX_IMG != ''">
+			`WX_IMG`,
+		</if>
+		<if test="PC_IMG != null and PC_IMG != ''">
+			`PC_IMG`,
+		</if>
+		<if test="APP_IMG != null and APP_IMG != ''">
+			`APP_IMG`,
+		</if>
+		<if test="WAP_IMG != null and WAP_IMG != ''">
+			`WAP_IMG`,
+		</if>
+		<if test="P_WAREHOUSE_ID != null and P_WAREHOUSE_ID != ''">
+			`P_WAREHOUSE_ID`,
+		</if>
+		<if test="WE_STATE != null and WE_STATE != ''">
+			`WE_STATE`,
+		</if>
+		<if test="PC_STATE != null and PC_STATE != ''">
+			`PC_STATE`,
+		</if>
+		<if test="WAP_STATE != null and WAP_STATE != ''">
+			`WAP_STATE`,
+		</if>
+		<if test="APP_STATE != null and APP_STATE != ''">
+			`APP_STATE`,
+		</if>
+		<if test="RANK != null and RANK != ''">
+			`RANK`,
+		</if>
+		<if test="C_USER != null and C_USER != ''">
+			`C_USER`,
+		</if>
+		`CTIME`
+		)VALUES(
+		<if test="ID != null and ID != ''">
+			#{ID},
+		</if>
+		<if test="PID != null and PID != ''">
+			#{PID},
+		</if>
+		<if test="P_NUMBER != null and P_NUMBER != ''">
+			#{P_NUMBER},
+		</if>
+		<if test="P_NAME != null and P_NAME != ''">
+			#{P_NAME},
+		</if>
+		<if test="TYPE_CODE != null and TYPE_CODE != ''">
+			#{TYPE_CODE},
+		</if>
+		<if test="P_CODE != null and P_CODE != ''">
+			#{P_CODE},
+		</if>
+		<if test="P_TYPE != null and P_TYPE != ''">
+			#{P_TYPE},
+		</if>
+		<if test="RISK_CODE != null and RISK_CODE != ''">
+			#{RISK_CODE},
+		</if>
+		<if test="IC_ID != null and IC_ID != ''">
+			#{IC_ID},
+		</if>
+		<if test="IC_NAME != null and IC_NAME != ''">
+			#{IC_NAME},
+		</if>
+		<if test="SHOW_OP != null and SHOW_OP != ''">
+			#{SHOW_OP},
+		</if>
+		<if test="SHOW_CP != null and SHOW_CP != ''">
+			#{SHOW_CP},
+		</if>
+		<if test="IS_PORT != null and IS_PORT != ''">
+			#{IS_PORT},
+		</if>
+		<if test="PAYMENT != null and PAYMENT != ''">
+			#{PAYMENT},
+		</if>
+		<if test="CASHIER_DESK != null and CASHIER_DESK != ''">
+			#{CASHIER_DESK},
+		</if>
+		<if test="CLEARING_FORM != null and CLEARING_FORM != ''">
+			#{CLEARING_FORM},
+		</if>
+		<if test="IS_INVOICE != null and IS_INVOICE != ''">
+			#{IS_INVOICE},
+		</if>
+		<if test="P_LABEL != null and P_LABEL != ''">
+			#{P_LABEL},
+		</if>
+		<if test="KEYWORD != null and KEYWORD != ''">
+			#{KEYWORD},
+		</if>
+		<if test="P_FEATURE != null and P_FEATURE != ''">
+			#{P_FEATURE},
+		</if>
+		<if test="INFO_URL != null and INFO_URL != ''">
+			#{INFO_URL},
+		</if>
+		<if test="WX_IMG != null and WX_IMG != ''">
+			#{WX_IMG},
+		</if>
+		<if test="PC_IMG != null and PC_IMG != ''">
+			#{PC_IMG},
+		</if>
+		<if test="APP_IMG != null and APP_IMG != ''">
+			#{APP_IMG},
+		</if>
+		<if test="WAP_IMG != null and WAP_IMG != ''">
+			#{WAP_IMG},
+		</if>
+		<if test="P_WAREHOUSE_ID != null and P_WAREHOUSE_ID != ''">
+			#{P_WAREHOUSE_ID},
+		</if>
+		<if test="WE_STATE != null and WE_STATE != ''">
+			#{WE_STATE},
+		</if>
+		<if test="PC_STATE != null and PC_STATE != ''">
+			#{PC_STATE},
+		</if>
+		<if test="WAP_STATE != null and WAP_STATE != ''">
+			#{WAP_STATE},
+		</if>
+		<if test="APP_STATE != null and APP_STATE != ''">
+			#{APP_STATE},
+		</if>
+		<if test="RANK != null and RANK != ''">
+			#{RANK},
+		</if>
+		<if test="C_USER != null and C_USER != ''">
+			#{C_USER},
+		</if>
+			NOW()
+		);
+	</insert>
+	
+	<update id="updateAdminProductById" parameterType="com.zj.boot_web.common.base.PageData">
+		UPDATE `xx_product`
+		SET
+		<if test="P_NUMBER !=null and P_NUMBER != ''">
+			`P_NUMBER` = #{P_NUMBER},
+		</if>
+		<if test="P_NAME !=null and P_NAME != ''">
+			`P_NAME` = #{P_NAME},
+		</if>
+		<if test="TYPE_CODE !=null and TYPE_CODE != ''">
+			`TYPE_CODE` = #{TYPE_CODE},
+		</if>
+		<if test="P_CODE !=null and P_CODE != ''">
+			`P_CODE` = #{P_CODE},
+		</if>
+		<!-- <if test="P_TYPE !=null and P_TYPE != ''">
+			`P_TYPE` = #{P_TYPE},
+		</if> -->
+		<if test="RISK_CODE !=null and RISK_CODE != ''">
+			`RISK_CODE` = #{RISK_CODE},
+		</if>
+		<if test="IC_ID !=null and IC_ID != ''">
+			`IC_ID` = #{IC_ID},
+		</if>
+		<if test="IC_NAME !=null and IC_NAME != ''">
+			`IC_NAME` = #{IC_NAME},
+		</if>
+		<if test="SHOW_OP !=null and SHOW_OP != ''">
+			`SHOW_OP` = #{SHOW_OP},
+		</if>
+		<if test="SHOW_CP !=null and SHOW_CP != ''">
+			`SHOW_CP` = #{SHOW_CP},
+		</if>
+		<if test="IS_PORT !=null and IS_PORT != ''">
+			`IS_PORT` = #{IS_PORT},
+		</if>
+		<if test="PAYMENT !=null and PAYMENT != ''">
+			`PAYMENT` = #{PAYMENT},
+		</if>
+		<if test="CASHIER_DESK !=null and CASHIER_DESK != ''">
+			`CASHIER_DESK` = #{CASHIER_DESK},
+		</if>
+		<if test="CLEARING_FORM !=null and CLEARING_FORM != ''">
+			`CLEARING_FORM` = #{CLEARING_FORM},
+		</if>
+		<if test="IS_INVOICE !=null and IS_INVOICE != ''">
+			`IS_INVOICE` = #{IS_INVOICE},
+		</if>
+		<if test="P_LABEL !=null and P_LABEL != ''">
+			`P_LABEL` = #{P_LABEL},
+		</if>
+		<if test="KEYWORD !=null and KEYWORD != ''">
+			`KEYWORD` = #{KEYWORD},
+		</if>
+		<if test="P_FEATURE !=null and P_FEATURE != ''">
+			`P_FEATURE` = #{P_FEATURE},
+		</if>
+		<if test="INFO_URL!=null and INFO_URL != ''">
+			`INFO_URL` = #{INFO_URL},
+		</if>
+		<if test="WX_IMG !=null and WX_IMG != ''">
+			`WX_IMG` = #{WX_IMG},
+		</if>
+		<if test="PC_IMG !=null and PC_IMG != ''">
+			`PC_IMG` = #{PC_IMG},
+		</if>
+		<if test="APP_IMG !=null and APP_IMG != ''">
+			`APP_IMG` = #{APP_IMG},
+		</if>
+		<if test="WAP_IMG !=null and WAP_IMG != ''">
+			`WAP_IMG` = #{WAP_IMG},
+		</if>
+		<if test="P_WAREHOUSE_ID !=null and P_WAREHOUSE_ID != ''">
+			`P_WAREHOUSE_ID` = #{P_WAREHOUSE_ID},
+		</if>
+		<if test="WE_STATE !=null and WE_STATE != ''">
+			`WE_STATE` = #{WE_STATE},
+		</if>
+		<if test="PC_STATE !=null and PC_STATE != ''">
+			`PC_STATE` = #{PC_STATE},
+		</if>
+		<if test="WAP_STATE !=null and WAP_STATE != ''">
+			`WAP_STATE` = #{WAP_STATE},
+		</if>
+		<if test="APP_STATE !=null and APP_STATE != ''">
+			`APP_STATE` = #{APP_STATE},
+		</if>
+		<if test="RANK !=null and RANK != ''">
+			`RANK` = #{RANK},
+		</if>
+		<if test="M_USER !=null and M_USER != ''">
+			`M_USER` = #{M_USER},
+		</if>
+			`MTIME` = NOW()
+		WHERE
+			`ID` = #{id}
+	</update>
+	<!-- 查询系统产品方案 -->
+	<select id="selectAdminSchemeList" parameterType="com.zj.boot_web.common.base.PageData" resultType="com.zj.boot_web.common.base.PageData">
+		SELECT
+			xps.ID,
+			xps.PID,
+			xps.S_NUMBER,
+			xps.S_NAME,
+			xps.SHOW_PRICE,
+			xps.SHOW_OP,
+			xps.SHOW_CP,
+			xps.PAY_PRICE,
+			xps.IS_DISCOUNTS,
+			xps.STATE,
+			xps.RANK
+		FROM
+			xx_product_scheme AS xps
+		WHERE
+			xps.PID = #{pid}
+		ORDER BY
+			xps.RANK ASC
+		<if test=" (page != null and page != '') or (size != null and size != '') ">
+			LIMIT #{page},#{size}
+		</if>
+	</select>
+	
+	<!-- 产品方案总数 -->
+	<select id="selectAdminSchemeCount" parameterType="com.zj.boot_web.common.base.PageData" resultType="com.zj.boot_web.common.base.PageData">
+		SELECT
+			COUNT(xps.ID) AS count
+		FROM
+			xx_product_scheme AS xps
+		WHERE
+			xps.PID = #{pid}
+	</select>
+	<!-- ************************后台产品管理模块end************************** -->
+	
+	<!-- ****************************************************保险公司模块start******************************************************* -->
+	<!-- 查询保险公司信息 -->
+	<select id="selectInsuranceCompanyList" parameterType="com.zj.boot_web.common.base.PageData" resultType="com.zj.boot_web.common.base.PageData">
+		SELECT
+			xic.ID,
+			xic.ENCODING,
+			xic.FEE_RATE,
+			xic.FOR_SHORT,
+			xic.FULL_NAME,
+			xic.PLATEFORM_CODE,
+			xic.LOGO_IMG,
+			xic.WX_LOGO_IMG,
+			xic.`DESCRIBE`,
+			xic.INTRO,
+			xic.INFORM,
+			xic.STATE,
+			xic.RANK
+		FROM
+			xx_insurance_company AS xic
+		ORDER BY
+			xic.RANK ASC
+		<if test=" (page != null and page != '') or (size != null and size!='') ">
+			LIMIT #{page},#{size}
+		</if>
+	</select>
+	
+	<!-- 保险公司信息总数 -->
+	<select id="selectInsuranceCompanyCount" parameterType="com.zj.boot_web.common.base.PageData" resultType="com.zj.boot_web.common.base.PageData">
+		SELECT
+			COUNT(xic.ID) AS count
+		FROM
+			xx_insurance_company AS xic
+	</select>
+
+	<!-- 查询保险公司信息 根据保险公司状态-->
+	<select id="selectInsuranceCompanyListByState" parameterType="com.zj.boot_web.common.base.PageData" resultType="com.zj.boot_web.common.base.PageData">
+		SELECT
+			xic.ID,
+			xic.ENCODING,
+			xic.FEE_RATE,
+			xic.FOR_SHORT,
+			xic.FULL_NAME,
+			xic.PLATEFORM_CODE,
+			xic.LOGO_IMG,
+			xic.WX_LOGO_IMG,
+			xic.`DESCRIBE`,
+			xic.INTRO,
+			xic.INFORM,
+			xic.STATE,
+			xic.RANK
+		FROM
+			xx_insurance_company AS xic
+		WHERE
+			STATE = '01'
+	</select>
+
+
+	<!-- 添加保险公司信息 -->
+	<insert id="insertInsuranceCompany" parameterType="com.zj.boot_web.common.base.PageData">
+		INSERT IGNORE INTO xx_insurance_company (
+		<if test="ID != null and ID != ''">
+			ID,
+		</if>
+		<if test="FEE_RATE != null and FEE_RATE != ''">
+			FEE_RATE,
+		</if>
+		<if test="RANK != null and RANK != ''">
+			RANK,
+		</if>
+		<if test="FOR_SHORT != null and FOR_SHORT != ''">
+			FOR_SHORT,
+		</if>
+		<if test="FULL_NAME != null and FULL_NAME != ''">
+			FULL_NAME,
+		</if>
+		<if test="PLATEFORM_CODE != null and PLATEFORM_CODE != ''">
+			PLATEFORM_CODE,
+		</if>
+		<if test="LOGO_IMG != null and LOGO_IMG != ''">
+			LOGO_IMG,
+		</if>
+		<if test="WX_LOGO_IMG != null and WX_LOGO_IMG != ''">
+			WX_LOGO_IMG,
+		</if>
+		<if test="INTRO != null and INTRO != ''">
+			INTRO,
+		</if>
+		<if test="ENCODING != null and ENCODING != ''">
+			ENCODING,
+		</if>
+		<if test="INFORM != null and INFORM != ''">
+			INFORM,
+		</if>
+		<if test="DESCRIBE != null and DESCRIBE != ''">
+			DESCRIBE,
+		</if>
+		<if test="STATE != null and STATE != ''">
+			STATE,
+		</if>
+		<if test="C_USER != null and C_USER != ''">
+			C_USER,
+		</if>
+		CTIME
+		) VALUES (
+		<if test="ID != null and ID != ''">
+			#{ID},
+		</if>
+		<if test="FEE_RATE != null and FEE_RATE != ''">
+			#{FEE_RATE},
+		</if>
+		<if test="RANK != null and RANK != ''">
+			#{RANK},
+		</if>
+		<if test="FOR_SHORT != null and FOR_SHORT != ''">
+			#{FOR_SHORT},
+		</if>
+		<if test="FULL_NAME != null and FULL_NAME != ''">
+			#{FULL_NAME},
+		</if>
+		<if test="PLATEFORM_CODE != null and PLATEFORM_CODE != ''">
+			#{PLATEFORM_CODE},
+		</if>
+		<if test="LOGO_IMG != null and LOGO_IMG != ''">
+			#{LOGO_IMG},
+		</if>
+		<if test="WX_LOGO_IMG != null and WX_LOGO_IMG != ''">
+			#{WX_LOGO_IMG},
+		</if>
+		<if test="INTRO != null and INTRO != ''">
+			#{INTRO},
+		</if>
+		<if test="ENCODING != null and ENCODING != ''">
+			#{ENCODING},
+		</if>
+		<if test="INFORM != null and INFORM != ''">
+			#{INFORM},
+		</if>
+		<if test="DESCRIBE != null and DESCRIBE != ''">
+			#{DESCRIBE},
+		</if>
+		<if test="STATE != null and STATE != ''">
+			#{STATE},
+		</if>
+		<if test="C_USER != null and C_USER != ''">
+			#{C_USER},
+		</if>
+		NOW()
+		)
+	</insert>
+	
+	<!-- 修改保险公司信息 -->
+	<update id="updateInsuranceCompanyById" parameterType="com.zj.boot_web.common.base.PageData">
+		UPDATE `xx_insurance_company`
+		SET
+		<if test=" ENCODING != nul and ENCODING != ''">
+			`ENCODING` = #{ENCODING},
+		</if>
+		<if test=" FEE_RATE != nul and FEE_RATE != ''">
+			`FEE_RATE` =#{FEE_RATE},
+		</if>
+		<if test=" FOR_SHORT != nul and FOR_SHORT != ''">
+			`FOR_SHORT` = #{FOR_SHORT},
+		</if>
+		<if test=" FULL_NAME != nul and FULL_NAME != ''">
+			`FULL_NAME` = #{FULL_NAME},
+		</if>
+		<if test=" PLATEFORM_CODE != nul and PLATEFORM_CODE != ''">
+			`PLATEFORM_CODE` = #{PLATEFORM_CODE},
+		</if>
+		<if test=" LOGO_IMG != nul and LOGO_IMG != ''">
+			`LOGO_IMG` = #{LOGO_IMG},
+		</if>
+		<if test=" WX_LOGO_IMG != nul and WX_LOGO_IMG != ''">
+			`WX_LOGO_IMG` = #{WX_LOGO_IMG},
+		</if>
+		<if test=" DESCRIBE != nul and DESCRIBE != ''">
+			`DESCRIBE` = #{DESCRIBE},
+		</if>
+		<if test=" INTRO != nul and INTRO != ''">
+			`INTRO` = #{INTRO},
+		</if>
+		<if test=" INFORM != nul and INFORM != ''">
+			`INFORM` = #{INFORM},
+		</if>
+		<if test=" STATE != nul and STATE != ''">
+			`STATE` = #{STATE},
+		</if>
+		<if test=" RANK != nul and RANK != ''">
+			`RANK` = #{RANK},
+		</if>
+		<if test=" M_USER != nul and M_USER != ''">
+			`M_USER` = #{M_USER},
+		</if>
+			`MTIME` = NOW()
+		WHERE
+			`ID` = #{id}
+	</update>
+	
+	<!-- ****************************************************保险公司模块end******************************************************* -->
+
+	<!-- ************************微信产品模块start************************** -->
+	
+	<!--  查询微信产品 -->
+	<select id="selectWechatProductList" parameterType="com.zj.boot_web.common.base.PageData" resultType="com.zj.boot_web.common.base.PageData">
+		SELECT
+			xxp.ID,
+			xxp.PID,
+			xxp.P_NUMBER,
+			xxp.IC_NAME,
+			xxp.P_NAME,
+			xxp.SHOW_OP,
+			xxp.SHOW_CP,
+			xxp.INFO_URL,
+			xxp.WX_IMG,
+			xxp.WE_STATE,
+			xxp.RANK
+		FROM
+			xx_product AS xxp
+		WHERE 
+			xxp.P_TYPE = #{p_type}
+		<if test="we_state != null">
+			AND	xxp.WE_STATE IN 
+			<foreach collection="we_state" item="we_state" index="index" open="(" separator="," close=")" >  
+		        #{we_state}
+		    </foreach>
+		</if>
+		ORDER BY xxp.RANK ASC
+	</select>
+	<!-- 根据产品id查询产品 ——（精确查询） -->
+	<select id="selectWechatProductById" parameterType="com.zj.boot_web.common.base.PageData" resultType="com.zj.boot_web.common.base.PageData">
+		SELECT
+			xp.ID,
+			xp.PID,
+			xp.P_NUMBER,
+			xp.TYPE_CODE,
+			xp.P_TYPE,
+			xp.RISK_CODE,
+			xp.IC_ID,
+			xp.IC_NAME,
+			xp.IS_PORT,
+			xp.PAYMENT,
+			xp.CASHIER_DESK,
+			xp.P_NAME,
+			xp.SHOW_OP,
+			xp.SHOW_CP,
+			xp.P_LABEL,
+			xp.P_FEATURE,
+			xp.INFO_URL,
+			xp.P_CODE,
+			xpw.P_INTRO,
+			xpw.P_DESCRIBE,
+			xpw.SHARE_DESCRIBE,
+			xpw.WX_BANNER_IMG,
+			xpw.SHARE_IMG,
+			xpw.FILE_URLS,
+			xpw.HEALTH_TOLD,
+			xpw.HEALTH_TOLD_TEXT,
+			xpw.SAFEGUARD_ILLNESS,
+			xpw.EI_BEGIN_DAYS,
+			xpw.EI_BEGIN_SCOPE,
+			xpw.FORM_OF_POLICY,
+			xpw.SALES_AREA,
+			xpw.POLICY_INPUT_URL,
+			xpw.P_INFO_TOP_URL,
+			xpw.P_INFO_URL,
+			xpw.P_UNSCRAMBLE,
+			xpw.UNSCRAMBLE_EXPLAIN,
+			xpw.P_COLOR,
+			xpw.ONLINE_CLAIM
+		FROM
+			xx_product AS xp
+		INNER JOIN xx_product_warehouse AS xpw ON xp.P_WAREHOUSE_ID = xpw.ID
+		WHERE
+			xp.ID = #{id}
+		<if test="we_state != null and we_state != ''">
+			AND xp.WE_STATE IN 
+			<foreach collection="we_state" item="we_state" index="index" open="(" separator="," close=")" >  
+		        #{we_state} 
+		    </foreach>
+		</if>
+		
+	</select>
+	<!-- 根据产品pid查询产品 ——（精确查询） -->
+	<select id="selectWechatProductByPid" parameterType="com.zj.boot_web.common.base.PageData" resultType="com.zj.boot_web.common.base.PageData">
+		SELECT
+			xp.ID,
+			xp.PID,
+			xp.P_NUMBER,
+			xp.TYPE_CODE,
+			xp.P_TYPE,
+			xp.RISK_CODE,
+			xp.IC_ID,
+			xp.IC_NAME,
+			xp.IS_PORT,
+			xp.PAYMENT,
+			xp.CASHIER_DESK,
+			xp.P_NAME,
+			xp.SHOW_OP,
+			xp.SHOW_CP,
+			xp.P_LABEL,
+			xp.P_FEATURE,
+			xp.INFO_URL,
+			xp.P_CODE,
+			xpw.P_INTRO,
+			xpw.P_DESCRIBE,
+			xpw.SHARE_DESCRIBE,
+			xpw.WX_BANNER_IMG,
+			xpw.SHARE_IMG,
+			xpw.FILE_URLS,
+			xpw.HEALTH_TOLD,
+			xpw.HEALTH_TOLD_TEXT,
+			xpw.SAFEGUARD_ILLNESS,
+			xpw.EI_BEGIN_DAYS,
+			xpw.EI_BEGIN_SCOPE,
+			xpw.FORM_OF_POLICY,
+			xpw.SALES_AREA,
+			xpw.POLICY_INPUT_URL,
+			xpw.P_INFO_TOP_URL,
+			xpw.P_INFO_URL,
+			xpw.P_UNSCRAMBLE,
+			xpw.UNSCRAMBLE_EXPLAIN,
+			xpw.P_COLOR,
+			xpw.ONLINE_CLAIM
+		FROM
+			xx_product AS xp
+		INNER JOIN xx_product_warehouse AS xpw ON xp.P_WAREHOUSE_ID = xpw.ID
+		WHERE
+			xp.PID = #{pid}
+		<if test="we_state != null and we_state != ''">
+			AND xp.WE_STATE IN 
+			<foreach collection="we_state" item="we_state" index="index" open="(" separator="," close=")" >  
+		        #{we_state} 
+		    </foreach>
+		</if>
+	</select>
+	
+	<!-- 查询微信产品方案详情，根据产品pid，方案id（必填参数：pid，sid ） -->
+	<select id="selectWechatSchemeByPidAndSid" parameterType="com.zj.boot_web.common.base.PageData" resultType="com.zj.boot_web.common.base.PageData">
+		SELECT
+			xps.ID,
+			xps.PID,
+			xps.S_NUMBER,
+			xps.S_NAME,
+			xps.S_GRADE,
+			xps.S_STANDARD,
+			xps.DEFAULT_STANDARD,
+			xps.SHOW_PRICE,
+			xps.SHOW_OP,
+			xps.SHOW_CP,
+			xps.PAY_PRICE,
+			xps.IS_DISCOUNTS,
+			xps.VEHICLE_TYPE,
+			xps.SEATING,
+			xps.SAFEGUARD_DUTY,
+			xpss.IS_EXAMINE,
+			xpss.IS_MEDICARE,
+			xpss.AGE_PRICE,
+			xpss.SEX_PRICE,
+			xpss.INSURED_PEOPLE,
+			xpss.UNDERWRITE_MINIMUM_AGE,
+			xpss.UNDERWRITE_UNIT,
+			xpss.UNDERWRITE_MAXIMUM_AGE,
+			xpss.SAFEGUARD_DEADLINE,
+			xpss.DEADLINE_UNIT,
+			xpss.SUM_COVERAGE
+		FROM
+			xx_product_scheme AS xps
+		INNER JOIN xx_product_scheme_son AS xpss ON xps.ID = xpss.SID
+		WHERE
+			xps.PID = #{pid}
+		AND xps.ID = #{sid}
+		AND xps.STATE = '01'
+		AND xps.SHOW_STANDARD = '1'
+	</select>
+	
+	<!-- 根据产品id查询产品方案 -->
+	<select id="selectWechatSchemeListByPid" parameterType="com.zj.boot_web.common.base.PageData" resultType="com.zj.boot_web.common.base.PageData">
+		SELECT
+			xps.ID,
+			xps.PID,
+			xps.S_NUMBER,
+			xps.S_NAME,
+			xps.S_GRADE,
+			xps.S_STANDARD,
+			xps.DEFAULT_STANDARD,
+			xps.SHOW_PRICE,
+			xps.SHOW_OP,
+			xps.SHOW_CP,
+			xps.PAY_PRICE,
+			xps.IS_DISCOUNTS,
+			xps.VEHICLE_TYPE,
+			xps.SEATING,
+			xps.SAFEGUARD_DUTY,
+			xpss.IS_EXAMINE,
+			xpss.IS_MEDICARE,
+			xpss.AGE_PRICE,
+			xpss.SEX_PRICE,
+			xpss.INSURED_PEOPLE,
+			xpss.UNDERWRITE_MINIMUM_AGE,
+			xpss.UNDERWRITE_UNIT,
+			xpss.UNDERWRITE_MAXIMUM_AGE,
+			xpss.SAFEGUARD_DEADLINE,
+			xpss.DEADLINE_UNIT,
+			xpss.SUM_COVERAGE
+		FROM
+			xx_product_scheme AS xps
+		INNER JOIN xx_product_scheme_son AS xpss ON xps.ID = xpss.SID
+		WHERE
+			xps.PID = #{pid}
+		AND xps.STATE = '01'
+		AND xps.SHOW_STANDARD = '1'
+		ORDER BY
+			xps.RANK ASC
+	</select>
+	<!-- 根据产品ID查询产品产品常见问题和案例数据-->
+	<select id="selectCaseIssueListByPid" parameterType="com.zj.boot_web.common.base.PageData" resultType="com.zj.boot_web.common.base.PageData">
+		SELECT
+			xci.`NAME`,
+			xci.AGE,
+			xci.OCCUPATION,
+			xci.DESCRIB,
+			xci.TYPE
+		FROM
+			xx_case_issue AS xci
+		WHERE
+			xci.PRODUCT_ID = #{pid}
+		AND xci.STATE = '01'
+		ORDER BY
+			xci.RANK ASC
+	</select>
+	
+	<!-- ************************微信产品模块end************************** -->
+	
+</mapper>

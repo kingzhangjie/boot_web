@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+<!-- layout文件路径-->
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no"/>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+<meta name="renderer" content="webkit" />
+<title>教练课程风险调查</title>
+<link type="text/css" rel="stylesheet" th:href="@{http://g.subaotec.com/ressources/static/css/questionnaire/survey-all.css?a}" />
+<link type="text/css" rel="stylesheet" th:href="@{http://g.subaotec.com/ressources/static/css/questionnaire/survey-rest.css}" />
+
+<link rel="shortcut icon" type="image/x-icon" th:href="@{http://g.subaotec.com/ressources/img/static/favicon.ico}" />
+</head>
+<body>
+	<div class="sur-content">
+		<form id="surveyFrom">
+			<div class="survey-title">
+				<h3 class="xx-font-size-20 xx-font-color-fff xx-align-center xx-padding-top-20"><b>教练课程风险调查</b></h3>
+				<p class="xx-font-size-14 xx-font-color-fff xx-align-center xx-padding-top-5 xx-padding-bottom-5">想借此了解教练在教学过程中会遇到哪些会员风险</p>
+				<div class="survey-titlebg-355d90"></div>
+				<div class="survey-titlebg-274b7d"></div>
+				<div class="survey-titlebg-2e4f7c"></div>
+				<div class="survey-titlebg-294d7d"></div>
+				<div class="survey-titlebg-274b7d"></div>
+			</div>
+			<div class="survey-item">
+				<label class="hite">1.您的性别</label>
+				<div class="survey-block-radio xx-clear">
+					<label class="radio">
+						<input type="radio" name="TOP_1" value="男" datatype="*" nullmsg="请选择" sucmsg=" " />
+						<div class="option01"></div>
+       					<span class="opt-text">男</span>
+					</label>
+					<label class="radio">
+						<input type="radio" name="TOP_1" value="女"/>
+						<div class="option01"></div>
+       					<span class="opt-text">女</span>
+					</label>
+				</div>
+			</div>
+			<div class="survey-item">
+				<label class="hite">2.您的年龄</label>
+				<div class="survey-block-text xx-clear">
+					<input type="text" name="TOP_2" id="" value="" datatype="n" nullmsg="请填写此项" errormsg="格式错误请输入数字" sucmsg=" " />
+				</div>
+			</div>
+			<div class="survey-item">
+				<label class="hite">3.您拥有哪些教练资格证书</label>
+				<div class="survey-block-text xx-clear">
+					<input type="text" name="TOP_3" id="" value="" datatype="*" nullmsg="请填写此项" errormsg="格式错误请输入数字" sucmsg=" "/>
+				</div>
+			</div>
+			<div class="survey-item">
+				<label class="hite">4.您目前的会员数</label>
+				<div class="survey-block-radio xx-clear">
+					<label class="radio">
+						<input type="radio" name="TOP_4" value="10人以下" datatype="*" nullmsg="请选择" sucmsg=" " />
+						<div class="option01"></div>
+       					<span class="opt-text">10人以下</span>
+					</label>
+					<label class="radio">
+						<input type="radio" name="TOP_4" value="10人-20人"/>
+						<div class="option01"></div>
+       					<span class="opt-text">10人-20人</span>
+					</label>
+					<label class="radio">
+						<input type="radio" name="TOP_4" value="20人-30人"/>
+						<div class="option01"></div>
+       					<span class="opt-text">20人-30人</span>
+					</label>
+					<label class="radio">
+						<input type="radio" name="TOP_4" value="30人-40人"/>
+						<div class="option01"></div>
+       					<span class="opt-text">30人-40人</span>
+					</label>
+					<label class="radio">
+						<input type="radio" name="TOP_4" value="40人-50人"/>
+						<div class="option01"></div>
+       					<span class="opt-text">40人-50人</span>
+					</label>
+					<label class="radio">
+						<input type="radio" name="TOP_4" value="50人以上"/>
+						<div class="option01"></div>
+       					<span class="opt-text">50人以上</span>
+					</label>
+				</div>
+			</div>
+			<div class="survey-item">
+				<label class="hite">5.您是否经历过或者听说过健身会员在私教课或者团课中发生意外伤害？</label>
+				<div class="survey-block-radio xx-clear">
+					<label class="radio">
+						<input type="radio" name="TOP_5" value="否" datatype="*" nullmsg="请选择" sucmsg=" "/>
+						<div class="option01"></div>
+       					<span class="opt-text">否</span> 
+					</label>
+					<label class="radio">
+						<input type="radio" name="TOP_5" value="有" />
+						<div class="option01"></div>
+       					<span class="opt-text">有</span>
+					</label>
+					<label class="radio"> 
+						<input type="radio" name="TOP_5" value="经常有" />
+						<div class="option01"></div>
+       					<span class="opt-text">经常有</span>
+					</label>
+					
+				</div>
+			</div>
+			<!-- <div class="survey-item">
+				<label class="hite">6.您是否经历过或者听说过健身会员在私教课或者团课中发生意外伤害？</label>
+				<div class="survey-block-radio xx-clear">
+					<label class="radio">
+						<input type="radio" name="TOP_6" value="否" datatype="*" nullmsg="请选择" sucmsg=" " />
+						<div class="option01"></div>
+       					<span class="opt-text">否</span>
+					</label>
+					<label class="radio">
+						<input type="radio" name="TOP_6" value="有"/>
+						<div class="option01"></div>
+       					<span class="opt-text">有</span>
+					</label>
+					<label class="radio">
+						<input type="radio" name="TOP_6" value="经常有"/>
+						<div class="option01"></div>
+       					<span class="opt-text">经常有</span>
+					</label>
+				</div>
+			</div> -->
+			<div class="survey-item">
+				<label class="hite">6.您经历过或者常听说过健身会员意外伤害情况</label>
+				<div class="survey-block-radio xx-clear">
+					<label class="radio">
+						<input type="checkbox" name="TOP_7" value="皮肤擦伤或者出血" datatype="*" nullmsg="请选择" sucmsg=" "/>
+						<div class="option02"></div>
+       					<span class="opt-text">皮肤擦伤或者出血</span>
+					</label>
+					<label class="radio">
+						<input type="checkbox" name="TOP_7" value="肌肉拉伤"/>
+						<div class="option02"></div>
+       					<span class="opt-text">肌肉拉伤</span>
+					</label>
+					<label class="radio">
+						<input type="checkbox" name="TOP_7" value="关节扭伤"/>
+						<div class="option02"></div>
+       					<span class="opt-text">关节扭伤</span>
+					</label>
+					<label class="radio">
+						<input type="checkbox" name="TOP_7" value="骨折"/>
+						<div class="option02"></div>
+       					<span class="opt-text">骨折</span>
+					</label>
+					<label class="radio">
+						<input type="checkbox" name="TOP_7" value="肌肉溶解症状"/>
+						<div class="option02"></div>
+       					<span class="opt-text">肌肉溶解症状</span>
+					</label>
+					<label class="radio">
+						<input type="checkbox" name="TOP_7" value="因为运动不当造成的内脏损伤"/>
+						<div class="option02"></div>
+       					<span class="opt-text">因为运动不当造成的内脏损伤</span>
+					</label>
+					<label class="radio">
+						<input type="checkbox" name="TOP_7" value="因为运动不当造成的休克"/>
+						<div class="option02"></div>
+       					<span class="opt-text">因为运动不当造成的休克</span>
+					</label>
+					<label class="radio">
+						<input type="checkbox" name="TOP_7" value="因为运动不当造成的瘫痪或者截肢"/>
+						<div class="option02"></div>
+       					<span class="opt-text">因为运动不当造成的瘫痪或者截肢</span>
+					</label>
+					<label class="radio">
+						<input type="checkbox" name="TOP_7" value="因为运动不当造成的猝死"/>
+						<div class="option02"></div>
+       					<span class="opt-text">因为运动不当造成的猝死</span>
+					</label>
+					<label class="radio">
+						<input type="checkbox" name="TOP_7" value="跟腱断裂"/>
+						<div class="option02"></div>
+       					<span class="opt-text">跟腱断裂</span>
+					</label>
+				</div>
+				<div class="survey-block-radio xx-clear xx-width100" style="margin-top: 0;">
+					<label class="radio">
+						<input class="rest-checked" type="checkbox" name="TOP_7" value="其他"/>
+						<div class="option02"></div>
+       					<span class="opt-text">其他</span>
+					</label>
+				</div>
+				<div class="survey-block-text xx-clear xx-hide rest-checked-text">
+					<input type="text" name="TOP_7_1" value="" ignore="ignore" datatype="*" nullmsg="请填写此项" sucmsg=" "/>
+				</div>
+			</div>
+			<div id="restRadio" class="survey-item">
+				<label class="hite">7.如果有一项保险可以极大的规避健身教练在教学的时候，因为健身会员产生意外伤害而发生的赔款，您是否觉的需要配置</label>
+				<div class="survey-block-radio xx-clear xx-width100">
+					<label class="radio">
+						<input type="radio" name="TOP_8" value="不需要，我的会员上课的时候绝对不会产生意外" datatype="*" nullmsg="请选择" sucmsg=" " />
+						<div class="option01"></div>
+       					<span class="opt-text">不需要，我的会员上课的时候绝对不会产生意外</span>
+					</label>
+					<label class="radio">
+						<input type="radio" name="TOP_8" value="需要，我不确定是否会有会员在上课的时候产生意外"/>
+						<div class="option01"></div>
+       					<span class="opt-text">需要，我不确定是否会有会员在上课的时候产生意外</span>
+					</label>
+					<label class="radio">
+						<input type="radio" name="TOP_8" value="非常需要，因为意外无处不在"/>
+						<div class="option01"></div>
+       					<span class="opt-text">非常需要，因为意外无处不在</span>
+					</label>
+				</div>
+				<div class="survey-block-radio xx-clear xx-width100" style="margin-top: 0;">
+					<label class="radio">
+						<input type="radio" name="TOP_8" value="其他"/>
+						<div class="option01"></div>
+       					<span class="opt-text">其他</span>
+					</label>
+				</div>
+				<div class="survey-block-text xx-clear xx-hide">
+					<input type="text" name="TOP_8_1" value="" ignore="ignore" datatype="*" nullmsg="请填写此项" sucmsg=" "/>
+				</div>
+			</div>
+			<div class="survey-item">
+				<label class="hite">8.如果您需要这样的险种，您愿意为此花费多少购买</label>
+				<div class="survey-block-radio xx-clear xx-width100">
+					<label class="radio">
+						<input type="radio" name="TOP_9" value="1000元/年" datatype="*" nullmsg="请选择" sucmsg=" " />
+						<div class="option01"></div>
+       					<span class="opt-text">1000元/年</span>
+					</label>
+					<label class="radio">
+						<input type="radio" name="TOP_9" value="2000元/年"/>
+						<div class="option01"></div>
+       					<span class="opt-text">2000元/年</span>
+					</label>
+					<label class="radio">
+						<input type="radio" name="TOP_9" value="3000元/年"/>
+						<div class="option01"></div>
+       					<span class="opt-text">3000元/年</span>
+					</label>
+					<label class="radio">
+						<input type="radio" name="TOP_9" value="3000元以上/年"/>
+						<div class="option01"></div>
+       					<span class="opt-text">3000元以上/年</span>
+					</label>
+				</div>
+			</div>
+			<div class="survey-item">
+				<label class="hite">9.您所在的健身会所或者健身工作室是否有为您配备相类似的责任除外险种</label>
+				<div class="survey-block-radio xx-clear">
+					<label class="radio">
+						<input type="radio" name="TOP_10" value="没有" datatype="*" nullmsg="请选择" sucmsg=" " />
+						<div class="option01"></div>
+       					<span class="opt-text">没有</span>
+					</label>
+					<label class="radio">
+						<input type="radio" name="TOP_10" value="有"/>
+						<div class="option01"></div>
+       					<span class="opt-text">有</span>
+					</label>
+				</div>
+			</div>
+			<div class="survey-item">
+				<label class="hite">10.您是否有配置其他类的保险</label>
+				<div class="survey-block-radio xx-clear xx-width100">
+					<label class="radio">
+						<input type="checkbox" name="TOP_11" value="重大疾病险" datatype="*" nullmsg="请选择" sucmsg=" "/>
+						<div class="option02"></div>
+       					<span class="opt-text">重大疾病险</span>
+					</label>
+					<label class="radio">
+						<input type="checkbox" name="TOP_11" value="意外伤害险"/>
+						<div class="option02"></div>
+       					<span class="opt-text">意外伤害险</span>
+					</label>
+					<label class="radio">
+						<input type="checkbox" name="TOP_11" value="高端医疗险"/>
+						<div class="option02"></div>
+       					<span class="opt-text">高端医疗险</span>
+					</label>
+					<label class="radio">
+						<input type="checkbox" name="TOP_11" value="储蓄险"/>
+						<div class="option02"></div>
+       					<span class="opt-text">储蓄险</span>
+					</label>
+				</div>
+				<div class="survey-block-radio xx-clear xx-width100" style="margin-top: 0;">
+					<label class="radio">
+						<input class="rest-checked" type="checkbox" name="TOP_11" value="其他"/>
+						<div class="option02"></div>
+       					<span class="opt-text">其他</span>
+					</label>
+				</div>
+				<div class="survey-block-text xx-clear xx-hide rest-checked-text">
+					<input type="text" name="TOP_11_1" value="" ignore="ignore" datatype="*" nullmsg="请填写此项" sucmsg=" " />
+				</div>
+			</div>
+			<div class="survey-fixed">
+				<div class="survey-btn">
+					<button id="surveySumbit" type="button">提交</button>
+				</div>
+			</div>
+			<div class="survey-bg-eef1f8"></div>
+			<div class="survey-bg-eef1f802 xx-align-center">
+				<img src="http://g.subaotec.com/ressources/img/static/website/logo.png" width="100" alt=""/>
+				<span style="line-height: 80px;" class="xx-font-color-999">由星星保呗提供技术支持</span>
+			</div>
+		</form>
+	</div>
+</body>
+<script th:src="@{http://g.subaotec.com/ressources/static/js/jquery-2.1.0.js}" type="text/javascript" charset="utf-8"></script>
+<script th:src="@{https://res.wx.qq.com/open/js/jweixin-1.0.0.js}" type="text/javascript" charset="utf-8"></script>
+<script th:src="@{http://g.subaotec.com/ressources/static/js/Validform_v5.3.2.js}" type="text/javascript" charset="utf-8"></script>
+<script th:src="@{http://g.subaotec.com/ressources/static/js/questionnaire/loreg_path.min.js}" type="text/javascript" charset="utf-8"></script>
+<script th:src="@{http://g.subaotec.com/ressources/static/js/questionnaire/index.min.js}" type="text/javascript" charset="utf-8"></script>
+<script th:src="@{http://g.subaotec.com/ressources/static/js/layer/layer.js}" type="text/javascript" charset="utf-8"></script>
+
+</html>

@@ -1,0 +1,695 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zj.boot_web.mapper.OrderMapper">
+
+	<!-- ************************后台订单管理模块start************************** -->
+	
+	
+	
+	<!-- ************************后台订单管理模块end************************** -->
+
+	
+	
+	<!-- ************************微信订单模块start************************** -->
+	
+	<!-- 添加微信订单-->
+	<insert id="insertWechatOrder" parameterType="com.zj.boot_web.common.base.PageData">
+		INSERT IGNORE INTO xx_order (
+		ID,
+		ORDER_NO,
+		<if test="PROPOSAL_NO != null and PROPOSAL_NO != ''">
+			PROPOSAL_NO,
+		</if>
+		<if test="PRODUCT_NAME != null and PRODUCT_NAME != ''">
+			PRODUCT_NAME,
+		</if>
+		<if test="SCHEME_NAME != null and SCHEME_NAME != ''">
+			SCHEME_NAME,
+		</if>
+		<if test="APPLI_NAME != null and APPLI_NAME != ''">
+			APPLI_NAME,
+		</if>
+		<if test="INSURED_NAME != null and INSURED_NAME != ''">
+			INSURED_NAME,
+		</if>
+		<if test="APPLI_PHONE != null and APPLI_PHONE != ''">
+			APPLI_PHONE,
+		</if>
+		<if test="APPLI_EMAIL != null and APPLI_EMAIL != ''">
+			APPLI_EMAIL,
+		</if>
+		<if test="RECO_UID != null and RECO_UID != ''">
+			RECO_UID,
+		</if>
+		<if test="F_RECO_UID != null and F_RECO_UID != ''">
+			F_RECO_UID,
+		</if>
+		<if test="TOTAL_PRICE != null and TOTAL_PRICE != ''">
+			TOTAL_PRICE,
+		</if>
+		<if test="NEED_PAY_PRICE != null and NEED_PAY_PRICE != ''">
+			NEED_PAY_PRICE,
+		</if>
+		<if test="PAY_PRICE != null and PAY_PRICE != ''">
+			PAY_PRICE,
+		</if>
+		<if test="INTEGRAL_DEDUCTION_MONEY != null and INTEGRAL_DEDUCTION_MONEY != ''">
+			INTEGRAL_DEDUCTION_MONEY,
+		</if>
+		<if test="SETTLEMENT_PREMIUM != null and SETTLEMENT_PREMIUM != ''">
+			SETTLEMENT_PREMIUM,
+		</if>
+		<if test="AGREEMENT_PREMIUN != null and AGREEMENT_PREMIUN != ''">
+			AGREEMENT_PREMIUN,
+		</if>
+		<if test="PAY_STATE != null and PAY_STATE != ''">
+			PAY_STATE,
+		</if>
+		<if test="PAY_TIME != null and PAY_TIME != ''">
+			PAY_TIME,
+		</if>
+		<if test="PRODUCT_TYPE != null and PRODUCT_TYPE != ''">
+			PRODUCT_TYPE,
+		</if>
+		<if test="ORDER_TYPE != null and ORDER_TYPE != ''">
+			ORDER_TYPE,
+		</if>
+		<if test="ORDER_MRK != null and ORDER_MRK != ''">
+			ORDER_MRK,
+		</if>
+		<if test="PAY_URL != null and PAY_URL != ''">
+			PAY_URL,
+		</if>
+		<if test="USER_ID != null and USER_ID != ''">
+			USER_ID,
+		</if>
+		<if test="PRODUCT_ID != null and PRODUCT_ID != ''">
+			PRODUCT_ID,
+		</if>
+		<if test="PRODUCT_PID != null and PRODUCT_PID != ''">
+			PRODUCT_PID,
+		</if>
+		<if test="PRODUCT_NO != null and PRODUCT_NO != ''">
+			PRODUCT_NO,
+		</if>
+		<if test="IC_ID != null and IC_ID != ''">
+			IC_ID,
+		</if>
+		<if test="IC_NAME != null and IC_NAME != ''">
+			IC_NAME,
+		</if>
+		<if test="SCHEME_ID != null and SCHEME_ID != ''">
+			SCHEME_ID,
+		</if>
+		<if test="SOURCE != null and SOURCE != ''">
+			SOURCE,
+		</if>
+		<if test="ORDER_IDENDITY != null and ORDER_IDENDITY != ''">
+			ORDER_IDENDITY,
+		</if>
+		<if test="IS_PORT != null and IS_PORT != ''">
+			IS_PORT,
+		</if>
+		<if test="STATE != null and STATE != ''">
+			STATE,
+		</if>
+		<if test="PAY_WAY != null and PAY_WAY != ''">
+			PAY_WAY,
+		</if>
+		<if test="CASHIER_DESK != null and CASHIER_DESK != ''">
+			CASHIER_DESK,
+		</if>
+		<if test="SALESMEN_ID != null and SALESMEN_ID != ''">
+			SALESMEN_ID,
+		</if>
+		CTIME
+		)values(
+		#{ID},
+		#{ORDER_NO},
+		<if test="PROPOSAL_NO != null and PROPOSAL_NO != ''">
+			#{PROPOSAL_NO},
+		</if>
+		<if test="PRODUCT_NAME != null and PRODUCT_NAME != ''">
+			#{PRODUCT_NAME},
+		</if>
+		<if test="SCHEME_NAME != null and SCHEME_NAME != ''">
+			#{SCHEME_NAME},
+		</if>
+		<if test="APPLI_NAME != null and APPLI_NAME != ''">
+			#{APPLI_NAME},
+		</if>
+		<if test="INSURED_NAME != null and INSURED_NAME != ''">
+			#{INSURED_NAME},
+		</if>
+		<if test="APPLI_PHONE != null and APPLI_PHONE != ''">
+			#{APPLI_PHONE},
+		</if>
+		<if test="APPLI_EMAIL != null and APPLI_EMAIL != ''">
+			#{APPLI_EMAIL},
+		</if>
+		<if test="RECO_UID != null and RECO_UID != ''">
+			#{RECO_UID},
+		</if>
+		<if test="F_RECO_UID != null and F_RECO_UID != ''">
+			#{F_RECO_UID},
+		</if>
+		<if test="TOTAL_PRICE != null and TOTAL_PRICE != ''">
+			#{TOTAL_PRICE},
+		</if>
+		<if test="NEED_PAY_PRICE != null and NEED_PAY_PRICE != ''">
+			#{NEED_PAY_PRICE},
+		</if>
+		<if test="PAY_PRICE != null and PAY_PRICE != ''">
+			#{PAY_PRICE},
+		</if>
+		<if test="INTEGRAL_DEDUCTION_MONEY != null and INTEGRAL_DEDUCTION_MONEY != ''">
+			#{INTEGRAL_DEDUCTION_MONEY},
+		</if>
+		<if test="SETTLEMENT_PREMIUM != null and SETTLEMENT_PREMIUM != ''">
+			#{SETTLEMENT_PREMIUM},
+		</if>
+		<if test="AGREEMENT_PREMIUN != null and AGREEMENT_PREMIUN != ''">
+			#{AGREEMENT_PREMIUN},
+		</if>
+		<if test="PAY_STATE != null and PAY_STATE != ''">
+			#{PAY_STATE},
+		</if>
+		<if test="PAY_TIME != null and PAY_TIME != ''">
+			#{PAY_TIME},
+		</if>
+		<if test="PRODUCT_TYPE != null and PRODUCT_TYPE != ''">
+			#{PRODUCT_TYPE},
+		</if>
+		<if test="ORDER_TYPE != null and ORDER_TYPE != ''">
+			#{ORDER_TYPE},
+		</if>
+		<if test="ORDER_MRK != null and ORDER_MRK != ''">
+			#{ORDER_MRK},
+		</if>
+		<if test="PAY_URL != null and PAY_URL != ''">
+			#{PAY_URL},
+		</if>
+		<if test="USER_ID != null and USER_ID != ''">
+			#{USER_ID},
+		</if>
+		<if test="PRODUCT_ID != null and PRODUCT_ID != ''">
+			#{PRODUCT_ID},
+		</if>
+		<if test="PRODUCT_PID != null and PRODUCT_PID != ''">
+			#{PRODUCT_PID},
+		</if>
+		<if test="PRODUCT_NO != null and PRODUCT_NO != ''">
+			#{PRODUCT_NO},
+		</if>
+		<if test="IC_ID != null and IC_ID != ''">
+			#{IC_ID},
+		</if>
+		<if test="IC_NAME != null and IC_NAME != ''">
+			#{IC_NAME},
+		</if>
+		<if test="SCHEME_ID != null and SCHEME_ID != ''">
+			#{SCHEME_ID},
+		</if>
+		<if test="SOURCE != null and SOURCE != ''">
+			#{SOURCE},
+		</if>
+		<if test="ORDER_IDENDITY != null and ORDER_IDENDITY != ''">
+			#{ORDER_IDENDITY},
+		</if>
+		<if test="IS_PORT != null and IS_PORT != ''">
+			#{IS_PORT},
+		</if>
+		<if test="STATE != null and STATE != ''">
+			#{STATE},
+		</if>
+		<if test="PAY_WAY != null and PAY_WAY != ''">
+			#{PAY_WAY},
+		</if>
+		<if test="CASHIER_DESK != null and CASHIER_DESK != ''">
+			#{CASHIER_DESK},
+		</if>
+		<if test="SALESMEN_ID != null and SALESMEN_ID != ''">
+			#{SALESMEN_ID},
+		</if>
+		NOW()
+		)
+	</insert>
+	
+	<!-- 新增微信订单个单详情数据 -->
+	<insert id="insertWechatOrderGdDetail" parameterType="com.zj.boot_web.common.base.PageData">
+		INSERT IGNORE INTO xx_gd_order_detail (
+		GDID,
+		ORDER_ID,
+		ORDER_NO,
+		<if test="APPLI_ID != null and APPLI_ID != ''">
+			APPLI_ID,
+		</if>
+		<if test="APPLI_ID_NUMBER != null and APPLI_ID_NUMBER != ''">
+			APPLI_ID_NUMBER,
+		</if>
+		<if test="RECOG_ID != null and RECOG_ID != ''">
+			RECOG_ID,
+		</if>
+		<if test="RECOG_ID_NUMBER != null and RECOG_ID_NUMBER != ''">
+			RECOG_ID_NUMBER,
+		</if>
+		<if test="GD_START_DATE != null and GD_START_DATE != ''">
+			GD_START_DATE,
+		</if>
+		<if test="GD_ENDING_DATE != null and GD_ENDING_DATE != ''">
+			GD_ENDING_DATE,
+		</if>
+		<if test="GD_SUM_AMOUNT != null and GD_SUM_AMOUNT != ''">
+			GD_SUM_AMOUNT,
+		</if>
+		<if test="SHARE_COVERAGE != null and SHARE_COVERAGE != ''">
+			SHARE_COVERAGE,
+		</if>
+		<if test="GD_DEADLINE != null and GD_DEADLINE != ''">
+			GD_DEADLINE,
+		</if>
+		<if test="FAVOREE_TYPE != null and FAVOREE_TYPE != ''">
+			FAVOREE_TYPE,
+		</if>
+		<if test="FAVOREE_ID != null and FAVOREE_ID != ''">
+			FAVOREE_ID,
+		</if>
+		<if test="CAR_ID != null and CAR_ID != ''">
+			CAR_ID,
+		</if>
+		<if test="GD_POLICY_URL != null and GD_POLICY_URL != ''">
+			GD_POLICY_URL,
+		</if>
+		<if test="PROPOSAL_NO != null and PROPOSAL_NO != ''">
+			PROPOSAL_NO,
+		</if>
+		<if test="GD_CHANNEL_OID != null and GD_CHANNEL_OID != ''">
+			GD_CHANNEL_OID,
+		</if>
+		<if test="GD_TRAN_NO != null and GD_TRAN_NO != ''">
+			GD_TRAN_NO,
+		</if>
+		GD_CTIME
+		)values(
+		#{GDID},
+		#{ORDER_ID},
+		#{ORDER_NO},
+		<if test="APPLI_ID != null and APPLI_ID != ''">
+			#{APPLI_ID},
+		</if>
+		<if test="APPLI_ID_NUMBER != null and APPLI_ID_NUMBER != ''">
+			#{APPLI_ID_NUMBER},
+		</if>
+		<if test="RECOG_ID != null and RECOG_ID != ''">
+			#{RECOG_ID},
+		</if>
+		<if test="RECOG_ID_NUMBER != null and RECOG_ID_NUMBER != ''">
+			#{RECOG_ID_NUMBER},
+		</if>
+		<if test="GD_START_DATE != null and GD_START_DATE != ''">
+			#{GD_START_DATE},
+		</if>
+		<if test="GD_ENDING_DATE != null and GD_ENDING_DATE != ''">
+			#{GD_ENDING_DATE},
+		</if>
+		<if test="GD_SUM_AMOUNT != null and GD_SUM_AMOUNT != ''">
+			#{GD_SUM_AMOUNT},
+		</if>
+		<if test="SHARE_COVERAGE != null and SHARE_COVERAGE != ''">
+			#{SHARE_COVERAGE},
+		</if>
+		<if test="GD_DEADLINE != null and GD_DEADLINE != ''">
+			#{GD_DEADLINE},
+		</if>
+		<if test="FAVOREE_TYPE != null and FAVOREE_TYPE != ''">
+			#{FAVOREE_TYPE},
+		</if>
+		<if test="FAVOREE_ID != null and FAVOREE_ID != ''">
+			#{FAVOREE_ID},
+		</if>
+		<if test="CAR_ID != null and CAR_ID != ''">
+			#{CAR_ID},
+		</if>
+		<if test="GD_POLICY_URL != null and GD_POLICY_URL != ''">
+			#{GD_POLICY_URL},
+		</if>
+		<if test="PROPOSAL_NO != null and PROPOSAL_NO != ''">
+			#{PROPOSAL_NO},
+		</if>
+		<if test="GD_CHANNEL_OID != null and GD_CHANNEL_OID != ''">
+			#{GD_CHANNEL_OID},
+		</if>
+		<if test="GD_TRAN_NO != null and GD_TRAN_NO != ''">
+			#{GD_TRAN_NO},
+		</if>
+		NOW()
+		)
+	</insert>
+	
+	<!-- 新增微信投保人数据 -->
+	<insert id="insertWechatApplicant" parameterType="com.zj.boot_web.common.base.PageData">
+		INSERT IGNORE INTO xx_applicant (
+		ID,
+		<if test="APPLI_NAME != null and APPLI_NAME != ''">
+			APPLI_NAME,
+		</if>
+		<if test="APPLI_ID_TYPE != null and APPLI_ID_TYPE != ''">
+			APPLI_ID_TYPE,
+		</if>
+		<if test="APPLI_ID_NO != null and APPLI_ID_NO != ''">
+			APPLI_ID_NO,
+		</if>
+		<if test="APPLI_MRK != null and APPLI_MRK != ''">
+			APPLI_MRK,
+		</if>
+		<if test="APPLI_SEX != null and APPLI_SEX != ''">
+			APPLI_SEX,
+		</if>
+		<if test="APPLI_AGE != null and APPLI_AGE != ''">
+			APPLI_AGE,
+		</if>
+		<if test="APPLI_BIRTHDAY != null and APPLI_BIRTHDAY != ''">
+			APPLI_BIRTHDAY,
+		</if>
+		<if test="APPLI_MOBILE != null and APPLI_MOBILE != ''">
+			APPLI_MOBILE,
+		</if>
+		<if test="SEND_SMS != null and SEND_SMS != ''">
+			SEND_SMS,
+		</if>
+		<if test="APPLI_EMAIL != null and APPLI_EMAIL != ''">
+			APPLI_EMAIL,
+		</if>
+		<if test="APPLI_ADDRESS != null and APPLI_ADDRESS != ''">
+			APPLI_ADDRESS,
+		</if>
+		<if test="APPLI_PR_ADDRESS != null and APPLI_PR_ADDRESS != ''">
+			APPLI_PR_ADDRESS,
+		</if>
+		<if test="APPLI_IS_COMMON != null and APPLI_IS_COMMON != ''">
+			APPLI_IS_COMMON,
+		</if>
+		<if test="APPLI_POSTCODE != null and APPLI_POSTCODE != ''">
+			APPLI_POSTCODE,
+		</if>
+		<if test="LINKER_NAME != null and LINKER_NAME != ''">
+			LINKER_NAME,
+		</if>
+		<if test="LINKER_PHONE != null and LINKER_PHONE != ''">
+			LINKER_PHONE,
+		</if>
+		USER_ID,
+		STATE,
+		CTIME
+		)values(
+		#{ID},
+		<if test="APPLI_NAME != null and APPLI_NAME != ''">
+			#{APPLI_NAME},
+		</if>
+		<if test="APPLI_ID_TYPE != null and APPLI_ID_TYPE != ''">
+			#{APPLI_ID_TYPE},
+		</if>
+		<if test="APPLI_ID_NO != null and APPLI_ID_NO != ''">
+			#{APPLI_ID_NO},
+		</if>
+		<if test="APPLI_MRK != null and APPLI_MRK != ''">
+			#{APPLI_MRK},
+		</if>
+		<if test="APPLI_SEX != null and APPLI_SEX != ''">
+			#{APPLI_SEX},
+		</if>
+		<if test="APPLI_AGE != null and APPLI_AGE != ''">
+			#{APPLI_AGE},
+		</if>
+		<if test="APPLI_BIRTHDAY != null and APPLI_BIRTHDAY != ''">
+			#{APPLI_BIRTHDAY},
+		</if>
+		<if test="APPLI_MOBILE != null and APPLI_MOBILE != ''">
+			#{APPLI_MOBILE},
+		</if>
+		<if test="SEND_SMS != null and SEND_SMS != ''">
+			#{SEND_SMS},
+		</if>
+		<if test="APPLI_EMAIL != null and APPLI_EMAIL != ''">
+			#{APPLI_EMAIL},
+		</if>
+		<if test="APPLI_ADDRESS != null and APPLI_ADDRESS != ''">
+			#{APPLI_ADDRESS},
+		</if>
+		<if test="APPLI_PR_ADDRESS != null and APPLI_PR_ADDRESS != ''">
+			#{APPLI_PR_ADDRESS},
+		</if>
+		<if test="APPLI_IS_COMMON != null and APPLI_IS_COMMON != ''">
+			#{APPLI_IS_COMMON},
+		</if>
+		<if test="APPLI_POSTCODE != null and APPLI_POSTCODE != ''">
+			#{APPLI_POSTCODE},
+		</if>
+		<if test="LINKER_NAME != null and LINKER_NAME != ''">
+			#{LINKER_NAME},
+		</if>
+		<if test="LINKER_PHONE != null and LINKER_PHONE != ''">
+			#{LINKER_PHONE},
+		</if>
+		#{USER_ID},
+		#{STATE},
+		NOW()
+		)
+	
+	</insert>
+	
+	<!-- 新增微信被保人数据 -->
+	<insert id="insertWechatRecognizee" parameterType="com.zj.boot_web.common.base.PageData">
+		INSERT IGNORE INTO xx_recognizee (
+		ID,
+		<if test="RECOG_NAME != null and RECOG_NAME != ''">
+			RECOG_NAME,
+		</if>
+		<if test="RECOG_ID_TYPE != null and RECOG_ID_TYPE != ''">
+			RECOG_ID_TYPE,
+		</if>
+		<if test="RECOG_ID_NO != null and RECOG_ID_NO != ''">
+			RECOG_ID_NO,
+		</if>
+		<if test="RECOG_MRK != null and RECOG_MRK != ''">
+			RECOG_MRK,
+		</if>
+		<if test="RECOG_SEX != null and RECOG_SEX != ''">
+			RECOG_SEX,
+		</if>
+		<if test="RECOG_BIRTHDAY != null and RECOG_BIRTHDAY != ''">
+			RECOG_BIRTHDAY,
+		</if>
+		<if test="RECOG_JINPO != null and RECOG_JINPO != ''">
+			RECOG_JINPO,
+		</if>
+		<if test="RECOG_AGE != null and RECOG_AGE != ''">
+			RECOG_AGE,
+		</if>
+		<if test="RECOG_MOBILE != null and RECOG_MOBILE != ''">
+			RECOG_MOBILE,
+		</if>
+		<if test="RECOG_EMAIL != null and RECOG_EMAIL != ''">
+			RECOG_EMAIL,
+		</if>
+		<if test="RECOG_ADDRESS != null and RECOG_ADDRESS != ''">
+			RECOG_ADDRESS,
+		</if>
+		<if test="RECOG_PR_ADDRESS != null and RECOG_PR_ADDRESS != ''">
+			RECOG_PR_ADDRESS,
+		</if>
+		<if test="RECOG_IS_COMMON != null and RECOG_IS_COMMON != ''">
+			RECOG_IS_COMMON,
+		</if>
+		<if test="GUARANTEE_TARGET != null and GUARANTEE_TARGET != ''">
+			GUARANTEE_TARGET,
+		</if>
+		<if test="ACCOUNT_NAME !=null and ACCOUNT_NAME != ''">
+			ACCOUNT_NAME,
+		</if>
+		<if test="BANK_ACCOUNT !=null and BANK_ACCOUNT != ''">
+			BANK_ACCOUNT,
+		</if>
+		<if test="BANK_NAME !=null and BANK_NAME != ''">
+			BANK_NAME,
+		</if>
+		<if test="PREGNANCY_WEEK != null and PREGNANCY_WEEK != ''">
+			PREGNANCY_WEEK,
+		</if>
+		<if test="NONAGE_CHILDREN != null and NONAGE_CHILDREN != ''">
+			NONAGE_CHILDREN,
+		</if>
+		<if test="STUDYING_CHILDREN != null and STUDYING_CHILDREN != ''">
+			STUDYING_CHILDREN,
+		</if>
+		<if test="IS_RECRUITER != null and IS_RECRUITER != ''">
+			IS_RECRUITER,
+		</if>
+		<if test="RECOG_HOUSE_NUMBER != null and RECOG_HOUSE_NUMBER != ''">
+			RECOG_HOUSE_NUMBER,
+		</if>
+		<if test="RECOG_FRAMING != null and RECOG_FRAMING != ''">
+			RECOG_FRAMING,
+		</if>
+		USER_ID,
+		STATE,
+		CTIME
+		)values(
+		#{ID},
+		<if test="RECOG_NAME != null and RECOG_NAME != ''">
+			#{RECOG_NAME},
+		</if>
+		<if test="RECOG_ID_TYPE != null and RECOG_ID_TYPE != ''">
+			#{RECOG_ID_TYPE},
+		</if>
+		<if test="RECOG_ID_NO != null and RECOG_ID_NO != ''">
+			#{RECOG_ID_NO},
+		</if>
+		<if test="RECOG_MRK != null and RECOG_MRK != ''">
+			#{RECOG_MRK},
+		</if>
+		<if test="RECOG_SEX != null and RECOG_SEX != ''">
+			#{RECOG_SEX},
+		</if>
+		<if test="RECOG_BIRTHDAY != null and RECOG_BIRTHDAY != ''">
+			#{RECOG_BIRTHDAY},
+		</if>
+		<if test="RECOG_JINPO != null and RECOG_JINPO != ''">
+			#{RECOG_JINPO},
+		</if>
+		<if test="RECOG_AGE != null and RECOG_AGE != ''">
+			#{RECOG_AGE},
+		</if>
+		<if test="RECOG_MOBILE != null and RECOG_MOBILE != ''">
+			#{RECOG_MOBILE},
+		</if>
+		<if test="RECOG_EMAIL != null and RECOG_EMAIL != ''">
+			#{RECOG_EMAIL},
+		</if>
+		<if test="RECOG_ADDRESS != null and RECOG_ADDRESS != ''">
+			#{RECOG_ADDRESS},
+		</if>
+		<if test="RECOG_PR_ADDRESS != null and RECOG_PR_ADDRESS != ''">
+			#{RECOG_PR_ADDRESS},
+		</if>
+		<if test="RECOG_IS_COMMON != null and RECOG_IS_COMMON != ''">
+			#{RECOG_IS_COMMON},
+		</if>
+		<if test="GUARANTEE_TARGET != null and GUARANTEE_TARGET != ''">
+			#{GUARANTEE_TARGET},
+		</if>
+		<if test="ACCOUNT_NAME !=null and ACCOUNT_NAME != ''">
+			#{ACCOUNT_NAME},
+		</if>
+		<if test="BANK_ACCOUNT !=null and BANK_ACCOUNT != ''">
+			#{BANK_ACCOUNT},
+		</if>
+		<if test="BANK_NAME !=null and BANK_NAME != ''">
+			#{BANK_NAME},
+		</if>
+		<if test="PREGNANCY_WEEK != null and PREGNANCY_WEEK != ''">
+			#{PREGNANCY_WEEK},
+		</if>
+		<if test="NONAGE_CHILDREN != null and NONAGE_CHILDREN != ''">
+			#{NONAGE_CHILDREN},
+		</if>
+		<if test="STUDYING_CHILDREN != null and STUDYING_CHILDREN != ''">
+			#{STUDYING_CHILDREN},
+		</if>
+		<if test="IS_RECRUITER != null and IS_RECRUITER != ''">
+			#{IS_RECRUITER},
+		</if>
+		<if test="RECOG_HOUSE_NUMBER != null and RECOG_HOUSE_NUMBER != ''">
+			#{RECOG_HOUSE_NUMBER},
+		</if>
+		<if test="RECOG_FRAMING != null and RECOG_FRAMING != ''">
+			#{RECOG_FRAMING},
+		</if>
+		#{USER_ID},
+		#{STATE},
+		NOW()
+		)
+	
+	</insert>
+	
+	<!-- 新增微信受益人表信息数据 -->
+	<insert id="insertWechatFavoree" parameterType="com.zj.boot_web.common.base.PageData">
+		INSERT IGNORE INTO xx_favoree_info (
+		ID,
+		ORDER_ID,
+		<if test="FAVOREE_TYPE != null and FAVOREE_TYPE != ''">
+			FAVOREE_TYPE,
+		</if>
+		<if test="FAVOREE_GRADE != null and FAVOREE_GRADE != ''">
+			FAVOREE_GRADE,
+		</if>
+		<if test="FAVOREE_RELATION != null and FAVOREE_RELATION != ''">
+			FAVOREE_RELATION,
+		</if>
+		<if test="FAVOREE_NAME != null and FAVOREE_NAME != ''">
+			FAVOREE_NAME,
+		</if>
+		<if test="CREDENTIALS_TYPE != null and CREDENTIALS_TYPE != ''">
+			CREDENTIALS_TYPE,
+		</if>
+		<if test="ID_NUMBER != null and ID_NUMBER != ''">
+			ID_NUMBER,
+		</if>
+		<if test="FRONT_SCAN != null and FRONT_SCAN != ''">
+			FRONT_SCAN,
+		</if>
+		<if test="VERSO_SCAN != null and VERSO_SCAN != ''">
+			VERSO_SCAN,
+		</if>
+		<if test="BENEFIT_RATIO != null and BENEFIT_RATIO != ''">
+			BENEFIT_RATIO,
+		</if>
+		<if test="USER_ID != null and USER_ID != ''">
+			USER_ID,
+		</if>
+		CTIME
+		)values(
+		#{ID},
+		#{ORDER_ID},
+		<if test="FAVOREE_TYPE != null and FAVOREE_TYPE != ''">
+			#{FAVOREE_TYPE},
+		</if>
+		<if test="FAVOREE_GRADE != null and FAVOREE_GRADE != ''">
+			#{FAVOREE_GRADE},
+		</if>
+		<if test="FAVOREE_RELATION != null and FAVOREE_RELATION != ''">
+			#{FAVOREE_RELATION},
+		</if>
+		<if test="FAVOREE_NAME != null and FAVOREE_NAME != ''">
+			#{FAVOREE_NAME},
+		</if>
+		<if test="CREDENTIALS_TYPE != null and CREDENTIALS_TYPE != ''">
+			#{CREDENTIALS_TYPE},
+		</if>
+		<if test="ID_NUMBER != null and ID_NUMBER != ''">
+			#{ID_NUMBER},
+		</if>
+		<if test="FRONT_SCAN != null and FRONT_SCAN != ''">
+			#{FRONT_SCAN},
+		</if>
+		<if test="VERSO_SCAN != null and VERSO_SCAN != ''">
+			#{VERSO_SCAN},
+		</if>
+		<if test="BENEFIT_RATIO != null and BENEFIT_RATIO != ''">
+			#{BENEFIT_RATIO},
+		</if>
+		<if test="USER_ID != null and USER_ID != ''">
+			#{USER_ID},
+		</if>
+		NOW()
+		)
+	</insert>
+	
+	
+	<update id="updateWechatOrderById" parameterType="com.zj.boot_web.common.base.PageData">
+		
+	</update>
+	
+	<!-- ************************微信订单模块end************************** -->
+	
+</mapper>

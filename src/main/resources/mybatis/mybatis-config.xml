@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD SQL Map Config 3.0//EN"  
+	"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	
+	<settings> 
+        <setting name="cacheenabled" value="true" /> 
+        <setting name="usegeneratedkeys" value="true" /> 
+        <setting name="defaultexecutortype" value="reuse" /> 
+        <setting name="callsettersonnulls" value="true"/>
+    </settings>
+
+	<typeAliases>
+		<!-- <typeAlias type="org.subao.common.entity.User" alias="User"/>
+		<typeAlias type="org.subao.common.entity.Role" alias="Role"/>
+		<typeAlias type="org.subao.common.entity.Menu" alias="Menu"/>
+		<typeAlias type="com.subao.xxbb.entity.PageData" alias="pd"/> -->
+	</typeAliases>
+	
+	<!-- <plugins>
+		<plugin interceptor="org.subao.common.plugin.PagePlugin">
+			<property name="dialect" value="mysql"/>
+			<property name="pageSqlId" value=".*listPage.*"/>
+		</plugin>
+	</plugins> -->
+	
+</configuration>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+<!-- layout文件路径-->
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no"/>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+<meta name="renderer" content="webkit" />
+<title>登录</title>
+<link type="text/css" rel="stylesheet" th:href="@{http://g.subaotec.com/ressources/static/css/questionnaire/survey-rest.css}" />
+<link type="text/css" rel="stylesheet" th:href="@{http://g.subaotec.com/ressources/static/css/questionnaire/survey-all.css?c}" />
+<link rel="shortcut icon" type="image/x-icon" th:href="@{http://g.subaotec.com/ressources/img/static/favicon.ico}" />
+<style type="text/css">
+html,
+body {
+	height: 100%;
+	background: url(http://g.subaotec.com/ressources/img/static/wechat/questionnaire/login-bg.png);
+	background-repeat: no-repeat;
+	background-size: auto;
+}
+</style>
+</head>
+<body>
+	<div class="login-con">
+		<div class="login-title">
+			<h3 class="xx-font-size-30">登录<span class="xx-font-size-24 xx-font-color-ccc xx-padding-left-10">Login</span></h3>
+		</div>
+		<form id="loginFrom" action="javascript:;">
+			<div class="login-main">
+				<div class="log-item">
+					<div class="log-block-txt">
+						<input type="hidden" th:value="${toKen}" name="KEYDATA" value="" />
+						<input type="text" name="account" value="" placeholder="请输入用户名" datatype="*5-16" errormsg="用户名不能少于6个字符" nullmsg="请输入用户名" sucmsg=" " />
+					</div>
+				</div>
+				<div class="log-item">
+					<div class="log-block-txt">
+						<input type="password" name="password" value="" placeholder="请输入密码" datatype="*6-16" errormsg="密码不能少于6个字符" nullmsg="请输入密码" sucmsg=" " />
+					</div>
+				</div>
+			</div>
+			<div class="log-sumbit">
+				<button id="logSumbit" type="button" class="xx-font-size-16 xx-font-color-fff">登录</button>
+			</div>
+		</form>
+	</div>
+</body>
+<script th:src="@{http://g.subaotec.com/ressources/static/js/jquery-2.1.0.js}" type="text/javascript" charset="utf-8"></script>
+<script th:src="@{http://g.subaotec.com/ressources/static/js/Validform_v5.3.2.js}" type="text/javascript" charset="utf-8"></script>
+<script th:src="@{http://g.subaotec.com/ressources/static/js/questionnaire/loreg_path.min.js?2}" type="text/javascript" charset="utf-8"></script>
+<script th:src="@{http://g.subaotec.com/ressources/static/js/questionnaire/login.min.js?1}" type="text/javascript" charset="utf-8"></script>
+<script th:src="@{http://g.subaotec.com/ressources/static/js/layer/layer.js}" type="text/javascript" charset="utf-8"></script>
+</html>

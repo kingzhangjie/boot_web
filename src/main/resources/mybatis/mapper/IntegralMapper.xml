@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zj.boot_web.mapper.IntegralMapper">
+
+	<!-- *********************** 微信用户积分模块  begin***********************-->
+	
+	<!-- 根据用户id查询积分信息 -->
+	<select id="selectWechatIntegralByUId" parameterType="com.zj.boot_web.common.base.PageData" resultType="com.zj.boot_web.common.base.PageData">
+		SELECT
+			xi.ID,
+			xi.U_ID,
+			xi.INTEGRAL_TOTAL,
+			xi.STATE,
+			xi.C_TIME,
+			xi.M_TIME
+		FROM
+			xx_integral AS xi
+		WHERE
+			xi.U_ID = #{U_ID}
+		<if test="STATE != null and STATE != ''">
+			AND xi.STATE = #{STATE}
+		</if>
+	</select>
+	
+	<!-- 根据用户id查询积分详细信息 -->
+	<select id="selectWechatIntegralDetailList" parameterType="com.zj.boot_web.common.base.PageData" resultType="com.zj.boot_web.common.base.PageData">
+		SELECT
+			xid.ID,
+			xid.U_ID,
+			xid.PID,
+			xid.ORDER_NO,
+			xid.TYPE,
+			xid.INTEGRAL_PRICE,
+			xid.INTEGRAL_CHANGE,
+			xid.STATE,
+			DATE_FORMAT(xid.C_TIME,'%Y/%m/%d') AS C_TIME,
+			DATE_FORMAT(xid.M_TIME,'%Y/%m/%d') AS M_TIME,
+			
+			xu.U_NAME,
+			xu.U_NICKNAME
+		FROM
+			xx_integral_detail AS xid
+		LEFT JOIN xx_user xu ON xu.ID = xid.U_ID
+		WHERE
+			xid.U_ID IN(
+				SELECT
+					b.ID
+				FROM
+					xx_user a 
+				LEFT JOIN xx_user b ON b.F_UID = a.UID
+				WHERE a.ID = #{U_ID}
+			)
+			OR xid.U_ID = #{U_ID}
+		<if test="STATE != null and STATE != ''">
+			AND xid.STATE = #{STATE}
+		</if>
+		ORDER BY xid.C_TIME DESC
+	</select>
+	
+	
+	<!-- *********************** 微信用户积分模块  end***********************-->
+</mapper>

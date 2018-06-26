@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+<!-- layout文件路径-->
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no"/>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+<meta name="renderer" content="webkit" />
+<title>调查问卷统计</title>
+<link type="text/css" rel="stylesheet" th:href="@{http://g.subaotec.com/ressources/static/css/questionnaire/survey-rest.css}" />
+<link type="text/css" rel="stylesheet" th:href="@{http://g.subaotec.com/ressources/static/css/questionnaire/survey-all.css?d}" />
+<link rel="shortcut icon" type="image/x-icon" th:href="@{http://g.subaotec.com/ressources/img/static/favicon.ico}" />
+</head>
+<body>
+	<div id="statis">
+		<div class="xx-contant">
+			<div class="statis-header xx-clear">
+				<div class="xx-right">
+					<div class="hearer-btn" v-on:click="exportDownload()">
+						导出下载
+					</div>
+					<div id="exit" class="hearer-btn data-href" method="outLogin.action" type="post" refresh="Y">
+						退出
+					</div>
+				</div>
+				<div class="feedback">
+					<h3 class="xx-font-size-14 xx-font-color-fff"><b>有效反馈：<span class="xx-font-size-16" v-cloak="v-cloak">{{feedback}}</span></b></h3>
+				</div>
+			</div>
+		</div>
+		<div class="xx-contant" style="background-color: #f6f9fb;">
+			<div class="statis-main">
+				<div class="statis-cart-con">
+					<div class="statis-cart-title">
+						<h4>性别:<span>单选</span></h4>
+					</div>
+					<div class="statis-cart-bot xx-clear">
+						<div id="genderStatis1" class="xx-left statis-cart-botimg">
+						</div>
+						<div class="xx-left statis-cart-bottable">
+							<!--<div class="statis-checkmore">
+								查看更多
+							</div>-->
+							<table border="0" cellspacing="0" cellpadding="0" v-cloak="v-cloak">
+								<thead>
+									<tr>
+										<th width="500" class="xx-align-left"></th>
+										<th width="80" class="xx-align-right">占比</th>
+										<th class="xx-align-right">数量</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr v-for="(item,index) in chartDataTop1">
+										<td class="xx-align-left">
+											<div class="beholden01" :style="'background-color:'+chartColors[index]+';'">
+											</div>
+											{{item.name}}
+										</td>
+										<td class="xx-align-right">{{item.proportion}}%</td>
+										<td class="xx-align-right">{{item.value}}</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+
+				<div class="statis-cart-con">
+					<div class="statis-cart-title">
+						<h4>目前的会员:<span>单选</span></h4>
+					</div>
+					<div class="statis-cart-bot xx-clear">
+						<div id="genderStatis4" class="xx-left statis-cart-botimg">
+						</div>
+						<div class="xx-left statis-cart-bottable">
+							<table border="0" cellspacing="0" cellpadding="0" v-cloak="v-cloak">
+								<thead>
+									<tr>
+										<th width="500" class="xx-align-left"></th>
+										<th width="80" class="xx-align-right">占比</th>
+										<th class="xx-align-right">数量</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr v-for="(item,index) in chartDataTop4">
+										<td class="xx-align-left">
+											<div class="beholden01" :style="'background-color:'+chartColors[index]+';'">
+											</div>
+											{{item.name}}
+										</td>
+										<td class="xx-align-right">{{item.proportion}}%</td>
+										<td class="xx-align-right">{{item.value}}</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+				
+				<div class="statis-cart-con">
+					<div class="statis-cart-title">
+						<h4>是否经历过或者听说过健身会员在私教课或者团课中发生意外伤害:<span>单选</span></h4>
+					</div>
+					<div class="statis-cart-bot xx-clear">
+						<div id="genderStatis5" class="xx-left statis-cart-botimg">
+						</div>
+						<div class="xx-left statis-cart-bottable">
+							<table border="0" cellspacing="0" cellpadding="0" v-cloak="v-cloak">
+								<thead>
+									<tr>
+										<th width="500" class="xx-align-left"></th>
+										<th width="80" class="xx-align-right">占比</th>
+										<th class="xx-align-right">数量</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr v-for="(item,index) in chartDataTop5">
+										<td class="xx-align-left">
+											<div class="beholden01" :style="'background-color:'+chartColors[index]+';'">
+											</div>
+											{{item.name}}
+										</td>
+										<td class="xx-align-right">{{item.proportion}}%</td>
+										<td class="xx-align-right">{{item.value}}</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+				
+				<!-- <div class="statis-cart-con">
+					<div class="statis-cart-title">
+						<h4>是否经历过健身会员在私教课或者团课中发生意外伤害:<span>单选</span></h4>
+					</div>
+					<div class="statis-cart-bot xx-clear">
+						<div id="genderStatis6" class="xx-left statis-cart-botimg">
+						</div>
+						<div class="xx-left statis-cart-bottable">
+							<table border="0" cellspacing="0" cellpadding="0" v-cloak="v-cloak">
+								<thead>
+									<tr>
+										<th width="500" class="xx-align-left"></th>
+										<th width="80" class="xx-align-right">占比</th>
+										<th class="xx-align-right">数量</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr v-for="(item,index) in chartDataTop6">
+										<td class="xx-align-left">
+											<div class="beholden01" :style="'background-color:'+chartColors[index]+';'">
+											</div>
+											{{item.name}}
+										</td>
+										<td class="xx-align-right">{{item.proportion}}%</td>
+										<td class="xx-align-right">{{item.value}}</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div> -->
+				
+				<div class="statis-cart-con">
+					<div class="statis-cart-title">
+						<h4>经历过或者常听说过健身会员意外伤害情况:<span>多选</span></h4>
+					</div>
+					<div class="statis-cart-bot xx-clear">
+						<div id="genderStatis7" class="xx-left statis-cart-botimg">
+						</div>
+						<div class="xx-left statis-cart-bottable">
+							<table border="0" cellspacing="0" cellpadding="0" v-cloak="v-cloak">
+								<thead>
+									<tr>
+										<th width="500" class="xx-align-left"></th>
+										<th width="80" class="xx-align-right">占比</th>
+										<th class="xx-align-right">数量</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr v-for="(item,index) in chartDataTop7">
+										<td class="xx-align-left">
+											<div class="beholden01" :style="'background-color:'+chartColors[index]+';'">
+											</div>
+											{{item.name}}
+										</td>
+										<td class="xx-align-right">{{item.proportion}}%</td>
+										<td class="xx-align-right">{{item.value}}</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+				
+				<div class="statis-cart-con">
+					<div class="statis-cart-title">
+						<h4>如果有一项保险可以极大的规避健身教练在教学的时候，因为健身会员产生意外伤害而发生的赔款，是否觉的需要配置:<span>单选</span></h4>
+					</div>
+					<div class="statis-cart-bot xx-clear">
+						<div id="genderStatis8" class="xx-left statis-cart-botimg">
+						</div>
+						<div class="xx-left statis-cart-bottable">
+							<table border="0" cellspacing="0" cellpadding="0" v-cloak="v-cloak">
+								<thead>
+									<tr>
+										<th width="500" class="xx-align-left"></th>
+										<th width="80" class="xx-align-right">占比</th>
+										<th class="xx-align-right">数量</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr v-for="(item,index) in chartDataTop8">
+										<td class="xx-align-left">
+											<div class="beholden01" :style="'background-color:'+chartColors[index]+';'">
+											</div>
+											{{item.name}}
+										</td>
+										<td class="xx-align-right">{{item.proportion}}%</td>
+										<td class="xx-align-right">{{item.value}}</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+				
+				<div class="statis-cart-con">
+					<div class="statis-cart-title">
+						<h4>如果需要这样的险种，愿意为此花费多少购买:<span>单选</span></h4>
+					</div>
+					<div class="statis-cart-bot xx-clear">
+						<div id="genderStatis9" class="xx-left statis-cart-botimg">
+						</div>
+						<div class="xx-left statis-cart-bottable">
+							<table border="0" cellspacing="0" cellpadding="0" v-cloak="v-cloak">
+								<thead>
+									<tr>
+										<th width="500" class="xx-align-left"></th>
+										<th width="80" class="xx-align-right">占比</th>
+										<th class="xx-align-right">数量</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr v-for="(item,index) in chartDataTop9">
+										<td class="xx-align-left">
+											<div class="beholden01" :style="'background-color:'+chartColors[index]+';'">
+											</div>
+											{{item.name}}
+										</td>
+										<td class="xx-align-right">{{item.proportion}}%</td>
+										<td class="xx-align-right">{{item.value}}</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+				
+				<div class="statis-cart-con">
+					<div class="statis-cart-title">
+						<h4>所在的健身会所或者健身工作室是否有为您配备相类似的责任除外险种:<span>单选</span></h4>
+					</div>
+					<div class="statis-cart-bot xx-clear">
+						<div id="genderStatis10" class="xx-left statis-cart-botimg">
+						</div>
+						<div class="xx-left statis-cart-bottable">
+							<table border="0" cellspacing="0" cellpadding="0" v-cloak="v-cloak">
+								<thead>
+									<tr>
+										<th width="500" class="xx-align-left"></th>
+										<th width="80" class="xx-align-right">占比</th>
+										<th class="xx-align-right">数量</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr v-for="(item,index) in chartDataTop10">
+										<td class="xx-align-left">
+											<div class="beholden01" :style="'background-color:'+chartColors[index]+';'">
+											</div>
+											{{item.name}}
+										</td>
+										<td class="xx-align-right">{{item.proportion}}%</td>
+										<td class="xx-align-right">{{item.value}}</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+				
+				
+				<div class="statis-cart-con">
+					<div class="statis-cart-title">
+						<h4>是否有配置其他类的保险:<span>多选</span></h4>
+					</div>
+					<div class="statis-cart-bot xx-clear">
+						<div id="genderStatis11" class="xx-left statis-cart-botimg">
+						</div>
+						<div class="xx-left statis-cart-bottable">
+							<table border="0" cellspacing="0" cellpadding="0" v-cloak="v-cloak">
+								<thead>
+									<tr>
+										<th width="500" class="xx-align-left"></th>
+										<th width="80" class="xx-align-right">占比</th>
+										<th class="xx-align-right">数量</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr v-for="(item,index) in chartDataTop11">
+										<td class="xx-align-left">
+											<div class="beholden01" :style="'background-color:'+chartColors[index]+';'">
+											</div>
+											{{item.name}}
+										</td>
+										<td class="xx-align-right">{{item.proportion}}%</td>
+										<td class="xx-align-right">{{item.value}}</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+<script th:src="@{http://g.subaotec.com/ressources/static/js/jquery-2.1.0.js}" type="text/javascript" charset="utf-8"></script>
+<script th:src="@{http://g.subaotec.com/ressources/static/js/echarts.min.js}" type="text/javascript" charset="utf-8"></script>
+<script th:src="@{https://cdn.jsdelivr.net/npm/vue}" type="text/javascript" charset="utf-8"></script>
+<script th:src="@{http://g.subaotec.com/ressources/static/js/questionnaire/loreg_path.min.js?2}" type="text/javascript" charset="utf-8"></script>
+<script th:src="@{http://g.subaotec.com/ressources/static/js/questionnaire/statistics.min.js?4}" type="text/javascript" charset="utf-8"></script>
+<script th:src="@{http://g.subaotec.com/ressources/static/js/layer/layer.js}" type="text/javascript" charset="utf-8"></script>
+</html>

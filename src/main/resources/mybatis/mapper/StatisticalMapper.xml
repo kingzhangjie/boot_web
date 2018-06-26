@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zj.boot_web.mapper.StatisticalMapper">
+	
+	<insert id="insertLogRecord" parameterType="com.zj.boot_web.common.base.PageData">
+		INSERT IGNORE INTO xx_log_record (
+			<if test="L_URL != null and L_URL != ''">
+				L_URL,
+			</if>
+			<if test="L_URI != null and L_URI != ''">
+				L_URI,
+			</if>
+			<if test="L_CLASS_NAME != null and L_CLASS_NAME != ''">
+				L_CLASS_NAME,
+			</if>
+			<if test="L_METHOD != null and L_METHOD != ''">
+				L_METHOD,
+			</if>
+			<if test="L_METHOD_NAME != null and L_METHOD_NAME != ''">
+				L_METHOD_NAME,
+			</if>
+			<if test="L_PARAMETER != null and L_PARAMETER != ''">
+				L_PARAMETER,
+			</if>
+			<if test="L_PORT != null and L_PORT != ''">
+				L_PORT,
+			</if>
+			<if test="L_OS != null and L_OS != ''">
+				L_OS,
+			</if>
+			<if test="L_BROWSER != null and L_BROWSER != ''">
+				L_BROWSER,
+			</if>
+			<if test="L_IP != null and L_IP != ''">
+				L_IP,
+			</if>
+			<if test="L_TYPE != null and L_TYPE != ''">
+				L_TYPE,
+			</if>
+			<if test="L_DESCRIPTION != null and L_DESCRIPTION != ''">
+				L_DESCRIPTION,
+			</if>
+			<if test="L_IS_SUCCEED != null and L_IS_SUCCEED != ''">
+				L_IS_SUCCEED,
+			</if>
+			<if test="L_MESSAGE != null and L_MESSAGE != ''">
+				L_MESSAGE,
+			</if>
+			<if test="L_STACKTRACE != null and L_STACKTRACE != ''">
+				L_STACKTRACE,
+			</if>
+			<if test="L_USER_AGENT != null and L_USER_AGENT != ''">
+				L_USER_AGENT,
+			</if>
+			<if test="L_USER_ID != null and L_USER_ID != ''">
+				L_USER_ID,
+			</if>
+			<if test="L_USER_NAME != null and L_USER_NAME != ''">
+				L_USER_NAME,
+			</if>
+				L_TIME
+		) values (
+			<if test="L_URL != null and L_URL != ''">
+				#{L_URL},
+			</if>
+			<if test="L_URI != null and L_URI != ''">
+				#{L_URI},
+			</if>
+			<if test="L_CLASS_NAME != null and L_CLASS_NAME != ''">
+				#{L_CLASS_NAME},
+			</if>
+			<if test="L_METHOD != null and L_METHOD != ''">
+				#{L_METHOD},
+			</if>
+			<if test="L_METHOD_NAME != null and L_METHOD_NAME != ''">
+				#{L_METHOD_NAME},
+			</if>
+			<if test="L_PARAMETER != null and L_PARAMETER != ''">
+				#{L_PARAMETER},
+			</if>
+			<if test="L_PORT != null and L_PORT != ''">
+				#{L_PORT},
+			</if>
+			<if test="L_OS != null and L_OS != ''">
+				#{L_OS},
+			</if>
+			<if test="L_BROWSER != null and L_BROWSER != ''">
+				#{L_BROWSER},
+			</if>
+			<if test="L_IP != null and L_IP != ''">
+				#{L_IP},
+			</if>
+			<if test="L_TYPE != null and L_TYPE != ''">
+				#{L_TYPE},
+			</if>
+			<if test="L_DESCRIPTION != null and L_DESCRIPTION != ''">
+				#{L_DESCRIPTION},
+			</if>
+			<if test="L_IS_SUCCEED != null and L_IS_SUCCEED != ''">
+				#{L_IS_SUCCEED},
+			</if>
+			<if test="L_MESSAGE != null and L_MESSAGE != ''">
+				#{L_MESSAGE},
+			</if>
+			<if test="L_STACKTRACE != null and L_STACKTRACE != ''">
+				#{L_STACKTRACE},
+			</if>
+			<if test="L_USER_AGENT != null and L_USER_AGENT != ''">
+				#{L_USER_AGENT},
+			</if>
+			<if test="L_USER_ID != null and L_USER_ID != ''">
+				#{L_USER_ID},
+			</if>
+			<if test="L_USER_NAME != null and L_USER_NAME != ''">
+				#{L_USER_NAME},
+			</if>
+			NOW()
+		)
+	</insert>
+</mapper>

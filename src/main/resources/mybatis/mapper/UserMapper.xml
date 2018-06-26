@@ -1,0 +1,437 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zj.boot_web.mapper.UserMapper">
+
+	<!-- *********************** 系统后台用户管理模块  begin ***********************-->
+
+	<!-- 查询系统管理员，根据用户账号和密码查询 -->
+	<select id="seleteAdminUserByAccountAndPwd" parameterType="com.zj.boot_web.common.base.PageData" resultType="com.zj.boot_web.common.base.PageData">
+		SELECT
+			ssu.ID,
+			ssu.SUID,
+			ssu.F_SUID,
+			ssu.`NAME`,
+			ssu.ACCOUNT,
+			ssu.PHONE,
+			ssu.EMAIL,
+			ssu.SEX,
+			ssu.ROLE_ID,
+			ssu.STATE,
+			ssu.USER_GRADE,
+			ssu.ADD_ACCOUNT,
+			ssu.AUTHORITY_DESCRIBE,
+			ssu.BONUS_RATIO,
+			ssu.LOGIN_TIME,
+			ssu.LOGIN_IP,
+			ssu.CNAME,
+			ssu.CTIME
+		FROM
+			sys_user AS ssu
+		WHERE
+			ssu.ACCOUNT = #{account}
+		AND ssu.`PASSWORD` = #{password}
+	</select>
+
+	
+	<insert id="insertAdminUser" parameterType="com.zj.boot_web.common.base.PageData">
+		INSERT IGNORE INTO sys_user (
+			<if test="ID != null and ID != ''">
+			`ID`,
+			</if>
+			<if test="SUID != null and SUID != ''">
+			`SUID`,
+			</if>
+			<if test="F_SUID != null and F_SUID != ''">
+			`F_SUID`,
+			</if>
+			<if test="NAME != null and NAME != ''">
+			`NAME`,
+			</if>
+			<if test="ACCOUNT != null and ACCOUNT != ''">
+			`ACCOUNT`,
+			</if>
+			<if test="PASSWORD != null and PASSWORD != ''">
+			`PASSWORD`,
+			</if>
+			<if test="PHONE != null and PHONE != ''">
+			`PHONE`,
+			</if>
+			<if test="EMAIL != null and EMAIL != ''">
+			`EMAIL`,
+			</if>
+			<if test="SEX != null and SEX != ''">
+			`SEX`,
+			</if>
+			<if test="ROLE_ID != null and ROLE_ID != ''">
+			`ROLE_ID`,
+			</if>
+			<if test="STATE != null and STATE != ''">
+			`STATE`,
+			</if>
+			<if test="USER_GRADE != null and USER_GRADE != ''">
+			`USER_GRADE`,
+			</if>
+			<if test="ADD_ACCOUNT != null and ADD_ACCOUNT != ''">
+			`ADD_ACCOUNT`,
+			</if>
+			<if test="AUTHORITY_DESCRIBE != null and AUTHORITY_DESCRIBE != ''">
+			`AUTHORITY_DESCRIBE`,
+			</if>
+			<if test="C_USER_ID != null and C_USER_ID != ''">
+			`C_USER_ID`,
+			</if>
+			CTIME
+		)VALUES(
+			<if test="ID != null and ID != ''">
+			#{ID},
+			</if>
+			<if test="SUID != null and SUID != ''">
+			#{SUID},
+			</if>
+			<if test="F_SUID != null and F_SUID != ''">
+			#{F_SUID},
+			</if>
+			<if test="NAME != null and NAME != ''">
+			#{NAME},
+			</if>
+			<if test="ACCOUNT != null and ACCOUNT != ''">
+			#{ACCOUNT},
+			</if>
+			<if test="PASSWORD != null and PASSWORD != ''">
+			#{PASSWORD},
+			</if>
+			<if test="PHONE != null and PHONE != ''">
+			#{PHONE},
+			</if>
+			<if test="EMAIL != null and EMAIL != ''">
+			#{EMAIL},
+			</if>
+			<if test="SEX != null and SEX != ''">
+			#{SEX},
+			</if>
+			<if test="ROLE_ID != null and ROLE_ID != ''">
+			#{ROLE_ID},
+			</if>
+			<if test="STATE != null and STATE != ''">
+			#{STATE},
+			</if>
+			<if test="USER_GRADE != null and USER_GRADE != ''">
+			#{USER_GRADE},
+			</if>
+			<if test="ADD_ACCOUNT != null and ADD_ACCOUNT != ''">
+			#{ADD_ACCOUNT},
+			</if>
+			<if test="AUTHORITY_DESCRIBE != null and AUTHORITY_DESCRIBE != ''">
+			#{AUTHORITY_DESCRIBE},
+			</if>
+			<if test="C_USER_ID != null and C_USER_ID != ''">
+			#{C_USER_ID},
+			</if>
+			NOW()
+		)
+	</insert>
+	
+	<update id="updateAdminUserBySuid" parameterType="com.zj.boot_web.common.base.PageData">
+		UPDATE `sys_user`
+		SET
+		<if test="NAME != null and NAME != ''">
+	 	`NAME` = #{NAME},
+	 	</if>
+		<if test="ACCOUNT != null and ACCOUNT != ''">
+		`ACCOUNT` = #{ACCOUNT},
+		</if>
+		<if test="PASSWORD != null and PASSWORD != ''">
+		`PASSWORD` = #{PASSWORD},
+		</if>
+		<if test="PHONE != null and PHONE != ''">
+		`PHONE` = #{PHONE},
+		</if>
+		<if test="EMAIL != null and EMAIL != ''">
+		`EMAIL` = #{EMAIL},
+		</if>
+		<if test="SEX != null and SEX != ''">
+		`SEX` = #{SEX},
+		</if>
+		<if test="ROLE_ID != null and ROLE_ID != ''">
+		`ROLE_ID` = #{ROLE_ID},
+		</if>
+		<if test="STATE != null and STATE != ''">
+		`STATE` = #{STATE},
+		</if>
+		<if test="USER_GRADE != null and USER_GRADE != ''">
+		`USER_GRADE` = #{USER_GRADE},
+		</if>
+		<if test="ADD_ACCOUNT != null and ADD_ACCOUNT != ''">
+	    `ADD_ACCOUNT` = #{ADD_ACCOUNT},
+	    </if>
+		<if test="AUTHORITY_DESCRIBE != null and AUTHORITY_DESCRIBE != ''">
+		`AUTHORITY_DESCRIBE` = #{AUTHORITY_DESCRIBE},
+		</if>
+			`MTIME` = NOW()
+		WHERE
+			`SUID` = #{SUID}
+	</update>
+	
+	<!-- *********************** 系统后台用户管理模块  end ***********************-->
+	
+	<!-- *********************** 微信用户管理模块  begin***********************-->
+	
+	<!-- 根据用户id查询用户信息 -->
+	<select id="selectWechatUserById" parameterType="com.zj.boot_web.common.base.PageData" resultType="com.zj.boot_web.common.base.PageData">
+		SELECT
+			xu.ID,
+			xu.UID,
+			xu.F_UID,
+			xu.FF_UID,
+			xu.OPENID,
+			xu.U_ACCOUNT,
+			xu.U_PHONE,
+			xu.U_EMAIL,
+			xu.U_NAME,
+			xu.U_NICKNAME,
+			xu.U_HEADIMG_URL,
+			xu.U_ENCODING,
+			xu.U_CATEGORY,
+			xu.U_TYPE,
+			xu.CLEARING_PATTERN,
+			xu.CLEARING_RATIO,
+			xu.SOURCE,
+			xu.CHANNEL,
+			xu.STATE,
+			xu.CTIME
+		FROM
+			xx_user AS xu
+		WHERE
+			xu.ID = #{id}
+	</select>
+	
+	<!-- 根据用户openid查询用户信息 -->
+	<select id="selectWechatUserByOpenId" parameterType="com.zj.boot_web.common.base.PageData" resultType="com.zj.boot_web.common.base.PageData">
+		SELECT
+			xu.ID,
+			xu.UID,
+			xu.F_UID,
+			xu.FF_UID,
+			xu.OPENID,
+			xu.U_ACCOUNT,
+			xu.U_PHONE,
+			xu.U_EMAIL,
+			xu.U_NAME,
+			xu.U_NICKNAME,
+			xu.U_HEADIMG_URL,
+			xu.U_ENCODING,
+			xu.U_CATEGORY,
+			xu.U_TYPE,
+			xu.CLEARING_PATTERN,
+			xu.CLEARING_RATIO,
+			xu.SOURCE,
+			xu.CHANNEL,
+			xu.STATE,
+			xu.CTIME
+		FROM
+			xx_user AS xu
+		WHERE
+			xu.OPENID = #{openid}
+	</select>
+	
+	<!-- 根据用户phone查询用户信息 -->
+	<select id="selectWechatUserByPhone" parameterType="com.zj.boot_web.common.base.PageData" resultType="com.zj.boot_web.common.base.PageData">
+		SELECT
+			xu.ID,
+			xu.UID,
+			xu.F_UID,
+			xu.FF_UID,
+			xu.OPENID,
+			xu.U_ACCOUNT,
+			xu.U_PHONE,
+			xu.U_EMAIL,
+			xu.U_NAME,
+			xu.U_NICKNAME,
+			xu.U_HEADIMG_URL,
+			xu.U_ENCODING,
+			xu.U_CATEGORY,
+			xu.U_TYPE,
+			xu.CLEARING_PATTERN,
+			xu.CLEARING_RATIO,
+			xu.SOURCE,
+			xu.CHANNEL,
+			xu.STATE,
+			xu.CTIME
+		FROM
+			xx_user AS xu
+		WHERE
+			xu.U_PHONE = #{phone}
+	</select>
+	
+	<!-- 新增用户 -->
+	<insert id="insertWechatUser" parameterType="com.zj.boot_web.common.base.PageData">
+		INSERT IGNORE INTO xx_user (
+		ID,
+		<if test="F_UID != null and F_UID != ''">
+			F_UID,
+		</if>
+		<if test="FF_UID != null and FF_UID != ''">
+			FF_UID,
+		</if>
+		<if test="OPENID != null and OPENID != ''">
+			OPENID,
+		</if>
+		<if test="U_ACCOUNT != null and U_ACCOUNT != ''">
+			U_ACCOUNT,
+		</if>
+		<if test="U_PWD != null and U_PWD != ''">
+			U_PWD,
+		</if>
+		<if test="U_PHONE != null and U_PHONE != ''">
+			U_PHONE,
+		</if>
+		<if test="U_EMAIL != null and U_EMAIL != ''">
+			U_EMAIL,
+		</if>
+		<if test="U_NAME != null and U_NAME != ''">
+			U_NAME,
+		</if>
+		<if test="U_NICKNAME != null and U_NICKNAME != ''">
+			U_NICKNAME,
+		</if>
+		<if test="U_HEADIMG_URL != null and U_HEADIMG_URL != ''">
+			U_HEADIMG_URL,
+		</if>
+		<if test="U_ENCODING != null and U_ENCODING != ''">
+			U_ENCODING,
+		</if>
+		<if test="U_CATEGORY != null and U_CATEGORY != ''">
+			U_CATEGORY,
+		</if>
+		<if test="U_TYPE != null and U_TYPE != ''">
+			U_TYPE,
+		</if>
+		<if test="CLEARING_PATTERN != null and CLEARING_PATTERN != ''">
+			CLEARING_PATTERN,
+		</if>
+		<if test="CLEARING_RATIO != null and CLEARING_RATIO != ''">
+			CLEARING_RATIO,
+		</if>
+		<if test="SOURCE != null and SOURCE != ''">
+			SOURCE,
+		</if>
+		<if test="CHANNEL != null and CHANNEL != ''">
+			CHANNEL,
+		</if>
+		<if test="SUBSCRIBE != null and SUBSCRIBE != ''">
+			SUBSCRIBE,
+		</if>
+		<if test="SUBSCRIBE_TIME != null and SUBSCRIBE_TIME != ''">
+			SUBSCRIBE_TIME,
+		</if>
+		<if test="OAUTH_TIME != null and OAUTH_TIME != ''">
+			OAUTH_TIME,
+		</if>
+		<if test="STATE != null and STATE != ''">
+			STATE,
+		</if>
+		LOGIN_TIME,
+		CTIME
+		) values (
+		#{ID},
+		<if test="F_UID != null and F_UID != ''">
+			#{F_UID},
+		</if>
+		<if test="FF_UID != null and FF_UID != ''">
+			#{FF_UID},
+		</if>
+		<if test="OPENID != null and OPENID != ''">
+			#{OPENID},
+		</if>
+		<if test="U_ACCOUNT != null and U_ACCOUNT != ''">
+			#{U_ACCOUNT},
+		</if>
+		<if test="U_PWD != null and U_PWD != ''">
+			#{U_PWD},
+		</if>
+		<if test="U_PHONE != null and U_PHONE != ''">
+			#{U_PHONE},
+		</if>
+		<if test="U_EMAIL != null and U_EMAIL != ''">
+			#{U_EMAIL},
+		</if>
+		<if test="U_NAME != null and U_NAME != ''">
+			#{U_NAME},
+		</if>
+		<if test="U_NICKNAME != null and U_NICKNAME != ''">
+			#{U_NICKNAME},
+		</if>
+		<if test="U_HEADIMG_URL != null and U_HEADIMG_URL != ''">
+			#{U_HEADIMG_URL},
+		</if>
+		<if test="U_ENCODING != null and U_ENCODING != ''">
+			#{U_ENCODING},
+		</if>
+		<if test="U_CATEGORY != null and U_CATEGORY != ''">
+			#{U_CATEGORY},
+		</if>
+		<if test="U_TYPE != null and U_TYPE != ''">
+			#{U_TYPE},
+		</if>
+		<if test="CLEARING_PATTERN != null and CLEARING_PATTERN != ''">
+			#{CLEARING_PATTERN},
+		</if>
+		<if test="CLEARING_RATIO != null and CLEARING_RATIO != ''">
+			#{CLEARING_RATIO},
+		</if>
+		<if test="SOURCE != null and SOURCE != ''">
+			#{SOURCE},
+		</if>
+		<if test="CHANNEL != null and CHANNEL != ''">
+			#{CHANNEL},
+		</if>
+		<if test="SUBSCRIBE != null and SUBSCRIBE != ''">
+			#{SUBSCRIBE},
+		</if>
+		<if test="SUBSCRIBE_TIME != null and SUBSCRIBE_TIME != ''">
+			#{SUBSCRIBE_TIME},
+		</if>
+		<if test="OAUTH_TIME != null and OAUTH_TIME != ''">
+			#{OAUTH_TIME},
+		</if>
+		<if test="STATE != null and STATE != ''">
+			#{STATE},
+		</if>
+		NOW(),
+		NOW()
+		)
+	</insert>
+	
+	<!-- 根据用户id修改用户信息 -->
+	<update id="updateWechatUserById" parameterType="com.zj.boot_web.common.base.PageData">
+		UPDATE xx_user
+		SET
+		<if test="U_NAME != null and U_NAME != ''">
+			U_NAME = #{U_NAME},
+		</if>
+		<if test="U_NICKNAME != null and U_NICKNAME != ''">
+			U_NICKNAME = #{U_NICKNAME},
+		</if>
+		<if test="U_HEADIMG_URL != null and U_HEADIMG_URL != ''">
+			U_HEADIMG_URL = #{U_HEADIMG_URL},
+		</if>
+		<if test="U_PHONE != null and U_PHONE != ''">
+			U_PHONE = #{U_PHONE},
+		</if>
+		<if test="U_EMAIL != null and U_EMAIL != ''">
+			U_EMAIL = #{U_EMAIL},
+		</if>
+		<if test="U_QR_URL != null and U_QR_URL != ''">
+			U_QR_URL = #{U_QR_URL},
+		</if>
+		<if test="LOGIN_TIME != null and LOGIN_TIME != ''">
+			LOGIN_TIME = #{LOGIN_TIME},
+		</if>
+			MTIME = NOW()
+		WHERE
+			ID = #{id}
+	</update>
+	
+	
+	<!-- *********************** 微信用户管理模块  end***********************-->
+</mapper>
